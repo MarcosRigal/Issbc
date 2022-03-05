@@ -1,38 +1,55 @@
 #!/usr/bin/python
 
 """
-Practica 1 ISBC
+ZetCode PyQt5 tutorial
 
-En este ejemplo, creo una 
-ventana en PyQt5.
+This program creates a checkable menu.
 
-Author: Marcos Rivera Gavilan
-Website: https://www.uco.es/~i92rigam/
+Author: Jan Bodnar
+Website: zetcode.com
 """
 
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget
-"""
-Aqui importo los modulos necesarios:
-    - sys se utiliza para interactuar con el sistema
-    - QApplication y QWidget continene los widgets basicos
-"""
+from PyQt5.QtWidgets import QMainWindow, QAction, QApplication
+
+
+class Example(QMainWindow):
+
+    def __init__(self):
+        super().__init__()
+
+        self.initUI()
+
+    def initUI(self):
+
+        self.statusbar = self.statusBar()
+        self.statusbar.showMessage('Ready')
+
+        menubar = self.menuBar()
+        viewMenu = menubar.addMenu('View')
+
+        viewStatAct = QAction('View statusbar', self, checkable=True)
+        viewStatAct.setStatusTip('View statusbar')
+        viewStatAct.setChecked(True)
+        viewStatAct.triggered.connect(self.toggleMenu)
+
+        viewMenu.addAction(viewStatAct)
+
+        self.setGeometry(300, 300, 300, 200)
+        self.setWindowTitle('Check menu')
+        self.show()
+
+    def toggleMenu(self, state):
+
+        if state:
+            self.statusbar.show()
+        else:
+            self.statusbar.hide()
+
 
 def main():
-
     app = QApplication(sys.argv)
-    """
-    Aqui creo el objeto de aplicacion de Qt5 necesario para que funcione
-    Y le paso, los argumentos que se han mandado a la hora de invocar 
-    el script por medio de parametro sys.argv
-    """
-
-    window = QWidget()
-    window.resize(250, 150)
-    window.move(300, 300)
-    window.setWindowTitle('Simple')
-    window.show()
-
+    ex = Example()
     sys.exit(app.exec_())
 
 

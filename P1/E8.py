@@ -1,38 +1,45 @@
 #!/usr/bin/python
 
 """
-Practica 1 ISBC
+ZetCode PyQt5 tutorial
 
-En este ejemplo, creo una 
-ventana en PyQt5.
+This program creates a context menu.
 
-Author: Marcos Rivera Gavilan
-Website: https://www.uco.es/~i92rigam/
+Author: Jan Bodnar
+Website: zetcode.com
 """
 
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget
-"""
-Aqui importo los modulos necesarios:
-    - sys se utiliza para interactuar con el sistema
-    - QApplication y QWidget continene los widgets basicos
-"""
+from PyQt5.QtWidgets import QMainWindow, qApp, QMenu, QApplication
+
+
+class Example(QMainWindow):
+
+    def __init__(self):
+        super().__init__()
+
+        self.initUI()
+
+    def initUI(self):
+        self.setGeometry(300, 300, 300, 200)
+        self.setWindowTitle('Context menu')
+        self.show()
+
+    def contextMenuEvent(self, event):
+        cmenu = QMenu(self)
+
+        newAct = cmenu.addAction("New")
+        openAct = cmenu.addAction("Open")
+        quitAct = cmenu.addAction("Quit")
+        action = cmenu.exec_(self.mapToGlobal(event.pos()))
+
+        if action == quitAct:
+            qApp.quit()
+
 
 def main():
-
     app = QApplication(sys.argv)
-    """
-    Aqui creo el objeto de aplicacion de Qt5 necesario para que funcione
-    Y le paso, los argumentos que se han mandado a la hora de invocar 
-    el script por medio de parametro sys.argv
-    """
-
-    window = QWidget()
-    window.resize(250, 150)
-    window.move(300, 300)
-    window.setWindowTitle('Simple')
-    window.show()
-
+    ex = Example()
     sys.exit(app.exec_())
 
 
