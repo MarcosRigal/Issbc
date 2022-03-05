@@ -1,14 +1,22 @@
 #!/usr/bin/python
 
 """
-ZetCode PyQt5 tutorial
+Practica 1 ISBC
 
-This program creates a toolbar.
-The toolbar has one action, which
-terminates the application, if triggered.
+Ejercicio 10
 
-Author: Jan Bodnar
-Website: zetcode.com
+En este ejercicio, creo una pestaña 
+con una barra de herramientas que 
+incluye un botón que permite cerrar
+la aplicación.
+
+Author: Marcos Rivera Gavilan
+Website: https://www.uco.es/~i92rigam/
+
+Importante: Para reducir el número de comentarios,
+y simplificar la lectura, solo comentaré las funciones 
+nuevas de este ejercicio. El resto que aparezcan sin 
+comentar, habrán sido comentadas en ejercicios anteriores.
 """
 
 import sys
@@ -29,8 +37,17 @@ class Example(QMainWindow):
         exitAct.setShortcut('Ctrl+Q')
         exitAct.triggered.connect(qApp.quit)
 
+        """
+        Aquí modelamos el comportamiento del botón
+        """
+
         self.toolbar = self.addToolBar('Exit')
         self.toolbar.addAction(exitAct)
+
+        """
+        Y aquí es donde creamos la barra de herramientas
+        a la que le añadimos el botón.
+        """
 
         self.setGeometry(300, 300, 300, 200)
         self.setWindowTitle('Toolbar')

@@ -1,13 +1,24 @@
 #!/usr/bin/python
 
 """
-ZetCode PyQt5 tutorial
+Practica 1 ISBC
 
-This program creates a checkable menu.
+Ejercicio 9
 
-Author: Jan Bodnar
-Website: zetcode.com
+Este ejercicio, es una variante del ejercicio 7
+solo que en vez de tener un botón en el submenú,
+hay una checkbox que permite activar y desactivar
+la barra de estado.
+
+Author: Marcos Rivera Gavilan
+Website: https://www.uco.es/~i92rigam/
+
+Importante: Para reducir el número de comentarios,
+y simplificar la lectura, solo comentaré las funciones 
+nuevas de este ejercicio. El resto que aparezcan sin 
+comentar, habrán sido comentadas en ejercicios anteriores.
 """
+
 
 import sys
 from PyQt5.QtWidgets import QMainWindow, QAction, QApplication
@@ -33,6 +44,11 @@ class Example(QMainWindow):
         viewStatAct.setChecked(True)
         viewStatAct.triggered.connect(self.toggleMenu)
 
+        """
+        Similar al código del ejercicio 7 solo
+        que en este caso utilizamos un toggleMenu
+        """
+
         viewMenu.addAction(viewStatAct)
 
         self.setGeometry(300, 300, 300, 200)
@@ -46,6 +62,12 @@ class Example(QMainWindow):
         else:
             self.statusbar.hide()
 
+
+    """
+    Esta función, es la encargada de modelar el comportamiento
+    del botón mostrando y ocultando la barra de estado en función
+    de la opción seleccionada.
+    """
 
 def main():
     app = QApplication(sys.argv)

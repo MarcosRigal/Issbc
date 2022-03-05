@@ -1,13 +1,21 @@
 #!/usr/bin/python
 
 """
-ZetCode PyQt5 tutorial
+Practica 1 ISBC
 
-This program creates a menubar. The
-menubar has one menu with an exit action.
+Ejercicio 7
 
-Author: Jan Bodnar
-Website: zetcode.com
+En este ejercicio, creo una menú
+con una opción que permite al usuario
+cerrar la pestaña actual
+
+Author: Marcos Rivera Gavilan
+Website: https://www.uco.es/~i92rigam/
+
+Importante: Para reducir el número de comentarios,
+y simplificar la lectura, solo comentaré las funciones 
+nuevas de este ejercicio. El resto que aparezcan sin 
+comentar, habrán sido comentadas en ejercicios anteriores.
 """
 
 import sys
@@ -29,11 +37,27 @@ class Example(QMainWindow):
         exitAct.setStatusTip('Exit application')
         exitAct.triggered.connect(qApp.quit)
 
+        """
+        Estas cuatro lineas son las encargadas de proporcionar
+        el comportamiento a la acción de nuestro menú
+        """
+
         self.statusBar()
+
+        """
+        Aquí, creo la barra de estado
+        """
 
         menubar = self.menuBar()
         fileMenu = menubar.addMenu('&File')
         fileMenu.addAction(exitAct)
+
+        """
+        Y aquí es donde configuro el menú,
+        añadiendo las distintas acciones
+        en concreto exitAct que es la que 
+        habíamos creado previamente
+        """
 
         self.setGeometry(300, 300, 300, 200)
         self.setWindowTitle('Simple menu')

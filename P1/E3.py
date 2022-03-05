@@ -1,14 +1,20 @@
 #!/usr/bin/python
 
 """
-ZetCode PyQt5 tutorial
+Practica 1 ISBC
 
-This program creates a quit
-button. When we press the button,
-the application terminates.
+Ejercicio 3
 
-Author: Jan Bodnar
-Website: zetcode.com
+En este ejercicio, creo un botón que
+permite cerrar una ventana
+
+Author: Marcos Rivera Gavilan
+Website: https://www.uco.es/~i92rigam/
+
+Importante: Para reducir el número de comentarios,
+y simplificar la lectura, solo comentaré las funciones 
+nuevas de este ejercicio. El resto que aparezcan sin 
+comentar, habrán sido comentadas en ejercicios anteriores.
 """
 
 import sys
@@ -26,6 +32,12 @@ class Example(QWidget):
 
         qbtn = QPushButton('Quit', self)
         qbtn.clicked.connect(QApplication.instance().quit)
+
+        """
+        Esta función es la que le proporciona el comportamiento
+        a nuestro botón haciendo que cuando lo pulsemos se cierre
+        """
+
         qbtn.resize(qbtn.sizeHint())
         qbtn.move(50, 50)
 

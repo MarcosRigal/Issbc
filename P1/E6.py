@@ -1,12 +1,21 @@
 #!/usr/bin/python
 
 """
-ZetCode PyQt5 tutorial
+Practica 1 ISBC
 
-This program creates a statusbar.
+Ejercicio 6
 
-Author: Jan Bodnar
-Website: zetcode.com
+En este ejercicio, creo una barra de 
+estado en la esquina inferior 
+izquierda de la ventana
+
+Author: Marcos Rivera Gavilan
+Website: https://www.uco.es/~i92rigam/
+
+Importante: Para reducir el número de comentarios,
+y simplificar la lectura, solo comentaré las funciones 
+nuevas de este ejercicio. El resto que aparezcan sin 
+comentar, habrán sido comentadas en ejercicios anteriores.
 """
 
 import sys
@@ -22,6 +31,12 @@ class Example(QMainWindow):
 
     def initUI(self):
         self.statusBar().showMessage('Ready')
+
+        """
+        Esta función es la encargada de hacer que 
+        aparezca la barra de estado en la ventana
+        con el mensaje Ready
+        """
 
         self.setGeometry(300, 300, 250, 150)
         self.setWindowTitle('Statusbar')

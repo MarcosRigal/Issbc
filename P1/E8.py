@@ -1,13 +1,23 @@
 #!/usr/bin/python
 
 """
-ZetCode PyQt5 tutorial
+Practica 1 ISBC
 
-This program creates a context menu.
+Ejercicio 8
 
-Author: Jan Bodnar
-Website: zetcode.com
+En este ejercicio, creo una menú
+contextual que aparece al pulsar
+el clic derecho
+
+Author: Marcos Rivera Gavilan
+Website: https://www.uco.es/~i92rigam/
+
+Importante: Para reducir el número de comentarios,
+y simplificar la lectura, solo comentaré las funciones 
+nuevas de este ejercicio. El resto que aparezcan sin 
+comentar, habrán sido comentadas en ejercicios anteriores.
 """
+
 
 import sys
 from PyQt5.QtWidgets import QMainWindow, qApp, QMenu, QApplication
@@ -35,7 +45,13 @@ class Example(QMainWindow):
 
         if action == quitAct:
             qApp.quit()
-
+    
+    """
+    Esta es la función encargada de modelar el comportamiento
+    del menú contextual. Para ello lo primero que hacemos es
+    crearlo y posterior mente, vamos añadiendole funcionalidades
+    entre ellas la de cerrar la aplicación
+    """
 
 def main():
     app = QApplication(sys.argv)

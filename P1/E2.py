@@ -1,18 +1,26 @@
 #!/usr/bin/python
 
 """
-ZetCode PyQt5 tutorial
+Practica 1 ISBC
 
-This example shows a tooltip on
-a window and a button.
+Ejercicio 2
 
-Author: Jan Bodnar
-Website: zetcode.com
+En este ejercicio, genero una ayuda emergente para
+el usuario que aparece cuando colocamos el ratón sobre 
+el botón
+
+Author: Marcos Rivera Gavilan
+Website: https://www.uco.es/~i92rigam/
+
+Importante: Para reducir el número de comentarios,
+y simplificar la lectura, solo comentaré las funciones 
+nuevas de este ejercicio. El resto que aparezcan sin 
+comentar, habrán sido comentadas en ejercicios anteriores.
 """
 
 import sys
 from PyQt5.QtWidgets import (QWidget, QToolTip,
-    QPushButton, QApplication)
+                             QPushButton, QApplication)
 from PyQt5.QtGui import QFont
 
 
@@ -23,17 +31,33 @@ class Example(QWidget):
 
         self.initUI()
 
+    """
+    Constructor de la clase
+    """
 
     def initUI(self):
 
         QToolTip.setFont(QFont('SansSerif', 10))
 
+        """
+        Esta función nos permite ajustar la fuente y el tamaño de la letra
+        """
+
         self.setToolTip('This is a <b>QWidget</b> widget')
+
+        """
+        Aquí ajustamos el mensaje que mostrará de la ventana
+        """
 
         btn = QPushButton('Button', self)
         btn.setToolTip('This is a <b>QPushButton</b> widget')
         btn.resize(btn.sizeHint())
         btn.move(50, 50)
+
+        """
+        En estas lineas creamos un botón y ajustamos el mensaje
+        con la función anterior y las dimensiones
+        """
 
         self.setGeometry(300, 300, 300, 200)
         self.setWindowTitle('Tooltips')
@@ -44,6 +68,11 @@ def main():
 
     app = QApplication(sys.argv)
     ex = Example()
+
+    """
+    Creamos una widget instanciando la clase Ejemplo
+    """
+
     sys.exit(app.exec_())
 
 

@@ -3,11 +3,18 @@
 """
 Practica 1 ISBC
 
-En este ejemplo, creo una 
+Ejercicio 1
+
+En este ejercicio, creo una
 ventana en PyQt5.
 
 Author: Marcos Rivera Gavilan
 Website: https://www.uco.es/~i92rigam/
+
+Importante: Para reducir el número de comentarios,
+y simplificar la lectura, solo comentaré las funciones
+nuevas de este ejercicio. El resto que aparezcan sin
+comentar, habrán sido comentadas en ejercicios anteriores.
 """
 
 import sys
@@ -24,7 +31,7 @@ def main():
     app = QApplication(sys.argv)
     """
     Aqui creo el objeto de aplicacion de Qt5 necesario para que funcione
-    Y le paso, los argumentos que se han mandado a la hora de invocar 
+    Y le paso, los argumentos que se han mandado a la hora de invocar
     el script por medio de parametro sys.argv
     """
 
@@ -34,8 +41,22 @@ def main():
     window.setWindowTitle('E1')
     window.show()
 
+    """
+    En este punto, hemos creado la ventana y ajustamdo las dimensiones
+    """
+
     sys.exit(app.exec_())
 
+    """
+    Esta función hace que entremos en el bucle de ejecución en el que
+    permaneceremos hasta que cerremos la ventana.
+    """
 
 if __name__ == '__main__':
     main()
+
+"""
+Este bloque de código invoca a la función main del programa
+que contiene el código principal del programa. El interprete
+de Python empieza por aquí
+"""

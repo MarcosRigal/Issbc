@@ -1,13 +1,23 @@
 #!/usr/bin/python
 
 """
-ZetCode PyQt5 tutorial
+Practica 1 ISBC
 
-This example shows a tooltip on
-a window and a button.
+Ejercicio 11
 
-Author: Jan Bodnar
-Website: zetcode.com
+Este ejercicio, incluye todo lo que he aprendido
+realizando esta práctica, para ello, he mezclado
+el comportamiento de los ejercicios anteriores en
+uno solo creando una aplicación que permite realizar 
+todo lo anterior.
+
+Author: Marcos Rivera Gavilan
+Website: https://www.uco.es/~i92rigam/
+
+Importante: Para reducir el número de comentarios,
+y simplificar la lectura, solo comentaré las funciones 
+nuevas de este ejercicio. El resto que aparezcan sin 
+comentar, habrán sido comentadas en ejercicios anteriores.
 """
 
 import sys

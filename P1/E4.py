@@ -1,14 +1,21 @@
 #!/usr/bin/python
 
 """
-ZetCode PyQt5 tutorial
+Practica 1 ISBC
 
-This program shows a confirmation
-message box when we click on the close
-button of the application window.
+Ejercicio 4
 
-Author: Jan Bodnar
-Website: zetcode.com
+En este ejercicio, creo una pestaña de diálogo
+que solicita confirmación al usuario para cerrar 
+la ventana capturando el evento quit.
+
+Author: Marcos Rivera Gavilan
+Website: https://www.uco.es/~i92rigam/
+
+Importante: Para reducir el número de comentarios,
+y simplificar la lectura, solo comentaré las funciones 
+nuevas de este ejercicio. El resto que aparezcan sin 
+comentar, habrán sido comentadas en ejercicios anteriores.
 """
 
 import sys
@@ -40,6 +47,13 @@ class Example(QWidget):
         else:
 
             event.ignore()
+
+    """
+    Esta función es la encargada de generar la caja de dialogo,
+    para ello, captura el evento y solicita confirmación del
+    usuario. En base a lo que este responda, podemos aceptar
+    el evento o ignorarlo.
+    """
 
 
 def main():
