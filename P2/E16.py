@@ -1,12 +1,20 @@
  #!/usr/bin/python
 
 """
-ZetCode PyQt5 tutorial
+Practica 2 ISBC
 
-This example shows a QSlider widget.
+Ejercicio 16
 
-Author: Jan Bodnar
-Website: zetcode.com
+En este ejercicio, creamos un deslizador
+que permite subir y bajar el volumen
+
+Author: Marcos Rivera Gavilan
+Website: https://www.uco.es/~i92rigam/
+
+Importante: Para reducir el número de comentarios,
+y simplificar la lectura, solo comentaré las funciones
+nuevas de este ejercicio. El resto que aparezcan sin
+comentar, habrán sido comentadas en ejercicios anteriores.
 """
 
 from PyQt5.QtWidgets import (QWidget, QSlider,
@@ -26,6 +34,11 @@ class Example(QWidget):
     def initUI(self):
 
         sld = QSlider(Qt.Horizontal, self)
+
+        """
+        Aquí creamos el deslizador
+        """
+
         sld.setFocusPolicy(Qt.NoFocus)
         sld.setGeometry(30, 40, 200, 30)
         sld.valueChanged[int].connect(self.changeValue)
@@ -33,6 +46,10 @@ class Example(QWidget):
         self.label = QLabel(self)
         self.label.setPixmap(QPixmap('mute.png'))
         self.label.setGeometry(250, 40, 80, 30)
+
+        """
+        Posicionamos el icono de volumen y lo ponemos en mute por defecto
+        """
 
         self.setGeometry(300, 300, 350, 250)
         self.setWindowTitle('QSlider')
@@ -52,7 +69,10 @@ class Example(QWidget):
         else:
 
             self.label.setPixmap(QPixmap('max.png'))
-
+    """
+    Esta función es la que cambia el icono cuando el
+    usuario sube y baja el volumen con el deslizador
+    """
 
 def main():
     app = QApplication(sys.argv)

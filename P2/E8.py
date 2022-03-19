@@ -1,13 +1,19 @@
 #!/usr/bin/python
 
 """
-ZetCode PyQt5 tutorial
+Practica 2 ISBC
 
-In this example, we determine the event sender
-object.
+Ejercicio 8
 
-Author: Jan Bodnar
-Website: zetcode.com
+En este ejercicio, almacenamos eventos en variables
+
+Author: Marcos Rivera Gavilan
+Website: https://www.uco.es/~i92rigam/
+
+Importante: Para reducir el número de comentarios,
+y simplificar la lectura, solo comentaré las funciones
+nuevas de este ejercicio. El resto que aparezcan sin
+comentar, habrán sido comentadas en ejercicios anteriores.
 """
 
 import sys
@@ -31,6 +37,10 @@ class Example(QMainWindow):
         btn1.clicked.connect(self.buttonClicked)
         btn2.clicked.connect(self.buttonClicked)
 
+        """
+        Aquí conectamos los botones al slot
+        """
+
         self.statusBar()
 
         self.setGeometry(300, 300, 450, 350)
@@ -40,6 +50,10 @@ class Example(QMainWindow):
     def buttonClicked(self):
         sender = self.sender()
         self.statusBar().showMessage(sender.text() + ' was pressed')
+
+    """
+    Con esta función modificamos el valor de la barra de estado
+    """
 
 
 def main():

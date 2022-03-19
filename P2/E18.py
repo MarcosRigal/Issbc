@@ -1,12 +1,20 @@
- #!/usr/bin/python
+#!/usr/bin/python
 
 """
-ZetCode PyQt5 tutorial
+Practica 2 ISBC
 
-This example shows a QCalendarWidget widget.
+Ejercicio 18
 
-Author: Jan Bodnar
-Website: zetcode.com
+En este ejercicio, creamos un
+calendario para el usuario
+
+Author: Marcos Rivera Gavilan
+Website: https://www.uco.es/~i92rigam/
+
+Importante: Para reducir el número de comentarios,
+y simplificar la lectura, solo comentaré las funciones
+nuevas de este ejercicio. El resto que aparezcan sin
+comentar, habrán sido comentadas en ejercicios anteriores.
 """
 
 from PyQt5.QtWidgets import (QWidget, QCalendarWidget,
@@ -26,8 +34,14 @@ class Example(QWidget):
         vbox = QVBoxLayout(self)
 
         cal = QCalendarWidget(self)
+        """
+        Creamos el widget calendario
+        """
         cal.setGridVisible(True)
         cal.clicked[QDate].connect(self.showDate)
+        """
+        Permite que seleccionemos una fecha
+        """
 
         vbox.addWidget(cal)
 
@@ -45,6 +59,10 @@ class Example(QWidget):
 
     def showDate(self, date):
         self.lbl.setText(date.toString())
+
+    """
+    Se encarga de parsear la fecha seleccionada a texto
+    """
 
 
 def main():

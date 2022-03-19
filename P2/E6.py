@@ -1,13 +1,20 @@
- #!/usr/bin/python
+#!/usr/bin/python
 
 """
-ZetCode PyQt5 tutorial
+Practica 2 ISBC
 
-In this example, we reimplement an
-event handler.
+Ejercicio 6
 
-Author: Jan Bodnar
-Website: zetcode.com
+En este ejercicio, hacemos que al pulsar
+esc se cierre la app
+
+Author: Marcos Rivera Gavilan
+Website: https://www.uco.es/~i92rigam/
+
+Importante: Para reducir el número de comentarios,
+y simplificar la lectura, solo comentaré las funciones
+nuevas de este ejercicio. El resto que aparezcan sin
+comentar, habrán sido comentadas en ejercicios anteriores.
 """
 
 import sys
@@ -30,6 +37,11 @@ class Example(QWidget):
     def keyPressEvent(self, e):
         if e.key() == Qt.Key_Escape:
             self.close()
+
+    """
+    Esta función asocia la tecla escape con la acción
+    de cerrar la ventana
+    """
 
 
 def main():

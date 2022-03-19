@@ -1,13 +1,20 @@
- #!/usr/bin/python
+#!/usr/bin/python
 
 """
-ZetCode PyQt5 tutorial
+Practica 2 ISBC
 
-In this example, we show how to
-emit a custom signal.
+Ejercicio 9
 
-Author: Jan Bodnar
-Website: zetcode.com
+En este ejercicio, hacemos que se cierre la
+pestaña al hacer click
+
+Author: Marcos Rivera Gavilan
+Website: https://www.uco.es/~i92rigam/
+
+Importante: Para reducir el número de comentarios,
+y simplificar la lectura, solo comentaré las funciones
+nuevas de este ejercicio. El resto que aparezcan sin
+comentar, habrán sido comentadas en ejercicios anteriores.
 """
 
 import sys
@@ -18,6 +25,12 @@ from PyQt5.QtWidgets import QMainWindow, QApplication
 class Communicate(QObject):
 
     closeApp = pyqtSignal()
+
+
+"""
+Creamos una clase para la señal de cerrar
+Creamos una nueva señal como un atributo de la clase
+"""
 
 
 class Example(QMainWindow):
@@ -32,6 +45,10 @@ class Example(QMainWindow):
         self.c = Communicate()
         self.c.closeApp.connect(self.close)
 
+        """
+        Asociamos la señal a cerrar
+        """
+
         self.setGeometry(300, 300, 450, 350)
         self.setWindowTitle('Emit signal')
         self.show()
@@ -39,6 +56,10 @@ class Example(QMainWindow):
     def mousePressEvent(self, event):
 
         self.c.closeApp.emit()
+    """
+    Definimos esta función para que cuando se
+    haga click se cierre la aplicación
+    """
 
 
 def main():
@@ -49,4 +70,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-

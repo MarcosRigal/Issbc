@@ -1,13 +1,20 @@
 #!/usr/bin/python
 
 """
-ZetCode PyQt5 tutorial
+Practica 2 ISBC
 
-This example shows three labels on a window
-using absolute positioning.
+Ejercicio 1
 
-Author: Jan Bodnar
-Website: zetcode.com
+En este ejercicio, posiciono elemntos
+en distintas posiciones dentro de una ventana.
+
+Author: Marcos Rivera Gavilan
+Website: https://www.uco.es/~i92rigam/
+
+Importante: Para reducir el número de comentarios,
+y simplificar la lectura, solo comentaré las funciones
+nuevas de este ejercicio. El resto que aparezcan sin
+comentar, habrán sido comentadas en ejercicios anteriores.
 """
 
 import sys
@@ -30,6 +37,11 @@ class Example(QWidget):
 
         lbl3 = QLabel('for programmers', self)
         lbl3.move(55, 70)
+
+        """
+        En este apartado utilizamos el método move
+        para posicionar los elementos dentro de la ventana
+        """
 
         self.setGeometry(300, 300, 250, 150)
         self.setWindowTitle('Absolute')

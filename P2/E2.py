@@ -1,14 +1,20 @@
 #!/usr/bin/python
 
 """
-ZetCode PyQt5 tutorial
+Practica 2 ISBC
 
-In this example, we position two push
-buttons in the bottom-right corner
-of the window.
+Ejercicio 2
 
-Author: Jan Bodnar
-Website: zetcode.com
+En este ejercicio, creo dos botones
+en la esquina inferior derecha de la ventana
+
+Author: Marcos Rivera Gavilan
+Website: https://www.uco.es/~i92rigam/
+
+Importante: Para reducir el número de comentarios,
+y simplificar la lectura, solo comentaré las funciones
+nuevas de este ejercicio. El resto que aparezcan sin
+comentar, habrán sido comentadas en ejercicios anteriores.
 """
 
 import sys
@@ -33,11 +39,26 @@ class Example(QWidget):
         hbox.addWidget(okButton)
         hbox.addWidget(cancelButton)
 
+        """
+        En este bloque de código, creo un layout
+        horizontal que posiciona los botones a la derecha
+        """
+
         vbox = QVBoxLayout()
         vbox.addStretch(1)
         vbox.addLayout(hbox)
 
+        """
+        En este bloque de códio, creo un layout vertical
+        que posiciona los botones a la derecha
+        """
+
         self.setLayout(vbox)
+
+        """
+        Con esta función establecemos el diseño definitivo
+        de la ventana
+        """
 
         self.setGeometry(300, 300, 300, 150)
         self.setWindowTitle('Buttons')
@@ -51,4 +72,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main() 
+    main()

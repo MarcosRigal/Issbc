@@ -1,13 +1,20 @@
 #!/usr/bin/python
 
 """
-ZetCode PyQt5 tutorial
+Practica 2 ISBC
 
-In this example, a QCheckBox widget
-is used to toggle the title of a window.
+Ejercicio 14
 
-Author: Jan Bodnar
-Website: zetcode.com
+En este ejercicio, tenemos una checkbox que nos 
+permite activar y desactivar el título
+
+Author: Marcos Rivera Gavilan
+Website: https://www.uco.es/~i92rigam/
+
+Importante: Para reducir el número de comentarios,
+y simplificar la lectura, solo comentaré las funciones
+nuevas de este ejercicio. El resto que aparezcan sin
+comentar, habrán sido comentadas en ejercicios anteriores.
 """
 
 from PyQt5.QtWidgets import QWidget, QCheckBox, QApplication
@@ -25,9 +32,16 @@ class Example(QWidget):
     def initUI(self):
 
         cb = QCheckBox('Show title', self)
+        """
+        Aquí creo la checkbox
+        """
         cb.move(20, 20)
         cb.toggle()
         cb.stateChanged.connect(self.changeTitle)
+
+        """
+        Conectamos la checkbox con la función de cambiar título
+        """
 
         self.setGeometry(300, 300, 350, 250)
         self.setWindowTitle('QCheckBox')
@@ -40,6 +54,11 @@ class Example(QWidget):
         else:
             self.setWindowTitle(' ')
 
+    """
+    Esta función es la encargada de realizar
+    los cambios de título
+    """
+
 
 def main():
     app = QApplication(sys.argv)
@@ -48,4 +67,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main() 
+    main()

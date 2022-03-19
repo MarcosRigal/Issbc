@@ -1,13 +1,20 @@
- #!/usr/bin/python
+#!/usr/bin/python
 
 """
-ZetCode PyQt5 tutorial
+Practica 2 ISBC
 
-In this example, we connect a signal
-of a QSlider to a slot of a QLCDNumber.
+Ejercicio 5
 
-Author: Jan Bodnar
-Website: zetcode.com
+En este ejercicio, asociamos un deslizador
+a un contador
+
+Author: Marcos Rivera Gavilan
+Website: https://www.uco.es/~i92rigam/
+
+Importante: Para reducir el número de comentarios,
+y simplificar la lectura, solo comentaré las funciones
+nuevas de este ejercicio. El resto que aparezcan sin
+comentar, habrán sido comentadas en ejercicios anteriores.
 """
 
 import sys
@@ -23,7 +30,6 @@ class Example(QWidget):
 
         self.initUI()
 
-
     def initUI(self):
 
         lcd = QLCDNumber(self)
@@ -35,6 +41,10 @@ class Example(QWidget):
 
         self.setLayout(vbox)
         sld.valueChanged.connect(lcd.display)
+
+        """
+        Con esto conectamos el deslizador con el display
+        """
 
         self.setGeometry(300, 300, 250, 150)
         self.setWindowTitle('Signal and slot')

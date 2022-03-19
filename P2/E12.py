@@ -2,13 +2,20 @@
 #!/usr/bin/python
 
 """
-ZetCode PyQt5 tutorial
+Practica 2 ISBC
 
-In this example, we select a font name
-and change the font of a label.
+Ejercicio 12
 
-Author: Jan Bodnar
-Website: zetcode.com
+En este ejercicio, creamos un cuadro de
+diálogo para escoger la fuente
+
+Author: Marcos Rivera Gavilan
+Website: https://www.uco.es/~i92rigam/
+
+Importante: Para reducir el número de comentarios,
+y simplificar la lectura, solo comentaré las funciones
+nuevas de este ejercicio. El resto que aparezcan sin
+comentar, habrán sido comentadas en ejercicios anteriores.
 """
 
 from PyQt5.QtWidgets import (QWidget, QVBoxLayout, QPushButton,
@@ -47,8 +54,18 @@ class Example(QWidget):
     def showDialog(self):
 
         font, ok = QFontDialog.getFont()
+
+        """
+        Aquí hemos declarado las variables que van a 
+        almacenar lo que devuelva el cuadro de diálogo.
+        """
+
         if ok:
             self.lbl.setFont(font)
+        """
+        Aquí comprobamos que la nueva fuente sea válida 
+        y si lo es, la cambiamos en el programa
+        """
 
 
 def main():

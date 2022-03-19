@@ -1,14 +1,20 @@
 #!/usr/bin/python
 
 """
-ZetCode PyQt5 tutorial
+Practica 2 ISBC
 
-In this example, we create three toggle buttons.
-They will control the background color of a
-QFrame.
+Ejercicio 15
 
-Author: Jan Bodnar
-Website: zetcode.com
+En este ejercicio, creamos tres botones
+cuyos efectos se combinan mezclando colores
+
+Author: Marcos Rivera Gavilan
+Website: https://www.uco.es/~i92rigam/
+
+Importante: Para reducir el número de comentarios,
+y simplificar la lectura, solo comentaré las funciones
+nuevas de este ejercicio. El resto que aparezcan sin
+comentar, habrán sido comentadas en ejercicios anteriores.
 """
 
 from PyQt5.QtWidgets import (QWidget, QPushButton,
@@ -46,6 +52,11 @@ class Example(QWidget):
 
         blueb.clicked[bool].connect(self.setColor)
 
+        """
+        Creamos los botones para los colores 
+        y sus funcionalidades
+        """
+
         self.square = QFrame(self)
         self.square.setGeometry(150, 20, 100, 100)
         self.square.setStyleSheet("QWidget { background-color: %s }" %
@@ -73,7 +84,10 @@ class Example(QWidget):
 
         self.square.setStyleSheet("QFrame { background-color: %s }" %
                                   self.col.name())
-
+        """
+        Esta función se encarga de controlar y cambiar los colores
+        cuando el usuario pulsa un botón
+        """
 
 def main():
     app = QApplication(sys.argv)
@@ -82,4 +96,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main() 
+    main()

@@ -1,14 +1,19 @@
 #!/usr/bin/python
 
 """
-ZetCode PyQt5 tutorial
+Practica 2 ISBC
 
-In this example, we create a bit
-more complicated window layout using
-the QGridLayout manager.
+Ejercicio 4
 
-Author: Jan Bodnar
-Website: zetcode.com
+En este ejercicio, creo un formulario
+
+Author: Marcos Rivera Gavilan
+Website: https://www.uco.es/~i92rigam/
+
+Importante: Para reducir el número de comentarios,
+y simplificar la lectura, solo comentaré las funciones
+nuevas de este ejercicio. El resto que aparezcan sin
+comentar, habrán sido comentadas en ejercicios anteriores.
 """
 
 import sys
@@ -35,6 +40,11 @@ class Example(QWidget):
         grid = QGridLayout()
         grid.setSpacing(10)
 
+        """
+        Aquí reamos un diseño de cuadrícula y establecemos
+        el espacio entre los distintos elementos
+        """
+
         grid.addWidget(title, 1, 0)
         grid.addWidget(titleEdit, 1, 1)
 
@@ -43,6 +53,10 @@ class Example(QWidget):
 
         grid.addWidget(review, 3, 0)
         grid.addWidget(reviewEdit, 3, 1, 5, 1)
+
+        """
+        Aquí añadimos los widgets y el tamaño que deben ocupar
+        """
 
         self.setLayout(grid)
 

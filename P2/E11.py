@@ -1,14 +1,20 @@
 #!/usr/bin/python
 
 """
-ZetCode PyQt5 tutorial
+Practica 2 ISBC
 
-In this example, we select a color value
-from the QColorDialog and change the background
-color of a QFrame widget.
+Ejercicio 11
 
-Author: Jan Bodnar
-Website: zetcode.com
+En este ejercicio, creamos un cuadro de 
+diálogo que nos permite escoger un color
+
+Author: Marcos Rivera Gavilan
+Website: https://www.uco.es/~i92rigam/
+
+Importante: Para reducir el número de comentarios,
+y simplificar la lectura, solo comentaré las funciones
+nuevas de este ejercicio. El resto que aparezcan sin
+comentar, habrán sido comentadas en ejercicios anteriores.
 """
 
 from PyQt5.QtWidgets import (QWidget, QPushButton, QFrame,
@@ -27,6 +33,10 @@ class Example(QWidget):
     def initUI(self):
         col = QColor(0, 0, 0)
 
+        """
+        Aquí creamos una variable que almacena el color
+        """
+
         self.btn = QPushButton('Dialog', self)
         self.btn.move(20, 20)
 
@@ -43,10 +53,17 @@ class Example(QWidget):
 
     def showDialog(self):
         col = QColorDialog.getColor()
+        """
+        Esto invoca al cuadro de diálogo para seleccionar el color
+        """
 
         if col.isValid():
             self.frm.setStyleSheet('QWidget { background-color: %s }'
                                    % col.name())
+
+        """
+        Esta función valida que el color introducido sea válido
+        """
 
 
 def main():
@@ -56,4 +73,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main() 
+    main()

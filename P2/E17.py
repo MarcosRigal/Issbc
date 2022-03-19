@@ -1,12 +1,20 @@
 #!/usr/bin/python
 
 """
-ZetCode PyQt5 tutorial
+Practica 2 ISBC
 
-This example shows a QProgressBar widget.
+Ejercicio 17
 
-Author: Jan Bodnar
-Website: zetcode.com
+En este ejercicio, creamos una
+progress bar que podemos parar
+
+Author: Marcos Rivera Gavilan
+Website: https://www.uco.es/~i92rigam/
+
+Importante: Para reducir el número de comentarios,
+y simplificar la lectura, solo comentaré las funciones
+nuevas de este ejercicio. El resto que aparezcan sin
+comentar, habrán sido comentadas en ejercicios anteriores.
 """
 
 from PyQt5.QtWidgets import (QWidget, QProgressBar,
@@ -25,6 +33,9 @@ class Example(QWidget):
     def initUI(self):
 
         self.pbar = QProgressBar(self)
+        """
+        Creamos la barra
+        """
         self.pbar.setGeometry(30, 40, 200, 25)
 
         self.btn = QPushButton('Start', self)
@@ -33,6 +44,9 @@ class Example(QWidget):
 
         self.timer = QBasicTimer()
         self.step = 0
+        """
+        Configuramos la barra de progreso
+        """
 
         self.setGeometry(300, 300, 280, 170)
         self.setWindowTitle('QProgressBar')
@@ -47,6 +61,10 @@ class Example(QWidget):
 
         self.step = self.step + 1
         self.pbar.setValue(self.step)
+    """
+    Esta función controla el tiempo con
+    el que progresa la barra
+    """
 
     def doAction(self):
 
@@ -56,6 +74,9 @@ class Example(QWidget):
         else:
             self.timer.start(100, self)
             self.btn.setText('Stop')
+    """
+    Esta función controla el comportamiento de la barra
+    """
 
 
 def main():
@@ -65,4 +86,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main() 
+    main()

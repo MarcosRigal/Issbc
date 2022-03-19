@@ -1,13 +1,20 @@
- #!/usr/bin/python
+#!/usr/bin/python
 
 """
-ZetCode PyQt5 tutorial
+Practica 2 ISBC
 
-In this example, we receive data from
-a QInputDialog dialog.
+Ejercicio 10
 
-Aauthor: Jan Bodnar
-Website: zetcode.com
+En este ejercicio, conectamos una ventana
+emergente con un cuadro de diálogo
+
+Author: Marcos Rivera Gavilan
+Website: https://www.uco.es/~i92rigam/
+
+Importante: Para reducir el número de comentarios,
+y simplificar la lectura, solo comentaré las funciones
+nuevas de este ejercicio. El resto que aparezcan sin
+comentar, habrán sido comentadas en ejercicios anteriores.
 """
 
 from PyQt5.QtWidgets import (QWidget, QPushButton, QLineEdit,
@@ -37,10 +44,14 @@ class Example(QWidget):
     def showDialog(self):
         text, ok = QInputDialog.getText(self, 'Input Dialog',
                                         'Enter your name:')
-
+        """
+        Aquí creamos la ventana emergente
+        """
         if ok:
             self.le.setText(str(text))
-
+        """
+        Aquí verificamos si se ha introducido texto
+        """
 
 def main():
     app = QApplication(sys.argv)

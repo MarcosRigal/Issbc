@@ -1,13 +1,20 @@
 #!/usr/bin/python
 
 """
-ZetCode PyQt5 tutorial
+Practica 2 ISBC
 
-In this example, we display the x and y
-coordinates of a mouse pointer in a label widget.
+Ejercicio 7
 
-Author: Jan Bodnar
-Website: zetcode.com
+En este ejercicio, monitorizo la posición
+del puntero en tiempo real
+
+Author: Marcos Rivera Gavilan
+Website: https://www.uco.es/~i92rigam/
+
+Importante: Para reducir el número de comentarios,
+y simplificar la lectura, solo comentaré las funciones
+nuevas de este ejercicio. El resto que aparezcan sin
+comentar, habrán sido comentadas en ejercicios anteriores.
 """
 
 import sys
@@ -28,12 +35,26 @@ class Example(QWidget):
         x = 0
         y = 0
 
+        """
+        Aquí definimos las variables que van a 
+        almacenar las coordenadas
+        """
+
         self.text = f'x: {x},  y: {y}'
+
+        """
+        Aquí defino la etiqueta encargada de mostrar
+        el valor de las variables
+        """
 
         self.label = QLabel(self.text, self)
         grid.addWidget(self.label, 0, 0, Qt.AlignTop)
 
         self.setMouseTracking(True)
+
+        """
+        Aquí activamos la monitorización del ratón
+        """
 
         self.setLayout(grid)
 
@@ -47,7 +68,11 @@ class Example(QWidget):
 
         text = f'x: {x},  y: {y}'
         self.label.setText(text)
-
+        
+        """
+        Esta función se encarga de actualizar el valor
+        de la posición en tiempo real
+        """
 
 def main():
     app = QApplication(sys.argv)

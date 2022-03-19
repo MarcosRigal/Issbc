@@ -1,14 +1,19 @@
- #!/usr/bin/python
+#!/usr/bin/python
 
 """
-ZetCode PyQt5 tutorial
+Practica 2 ISBC
 
-In this example, we select a file with a
-QFileDialog and display its contents
-in a QTextEdit.
+Ejercicio 13
 
-Author: Jan Bodnar
-Website: zetcode.com
+En este ejercicio, creamos un editor de texto básico
+
+Author: Marcos Rivera Gavilan
+Website: https://www.uco.es/~i92rigam/
+
+Importante: Para reducir el número de comentarios,
+y simplificar la lectura, solo comentaré las funciones
+nuevas de este ejercicio. El resto que aparezcan sin
+comentar, habrán sido comentadas en ejercicios anteriores.
 """
 
 from PyQt5.QtWidgets import (QMainWindow, QTextEdit,
@@ -48,12 +53,19 @@ class Example(QMainWindow):
         home_dir = str(Path.home())
         fname = QFileDialog.getOpenFileName(self, 'Open file', home_dir)
 
+        """
+        Estas variables van a almacenar la ruta del fichero y su nombre
+        """
+
         if fname[0]:
             f = open(fname[0], 'r')
 
             with f:
                 data = f.read()
                 self.textEdit.setText(data)
+        """
+        Aquí comprobamos que la ruta del fichero sea correcta y se haya abierto
+        """
 
 
 def main():
