@@ -24,13 +24,15 @@ from PyQt5.QtWidgets import QWidget, QTreeView, QFileSystemModel, QApplication, 
 class TextEditorDlg(QWidget):
     def __init__(self):
         super().__init__()
-
+        self.fileName = ["Editor de textos", ".txt"]
         self.initUI()
 
     def initUI(self):
 
         self.title = QLabel('Carpeta')
         self.titleEdit = QLineEdit()
+        self.titleEdit.setReadOnly(True)
+        self.titleEdit.setText("/home/")
         self.selectButton = QPushButton("Seleccionar")
 
         self.files = QLabel('Archivos')
@@ -39,6 +41,7 @@ class TextEditorDlg(QWidget):
         self.filesEdit = QTreeView()
         self.filesEdit.setModel(self.model)
         self.filesEdit.setRootIndex(self.model.index("/home/"))
+        self.filesEdit.clicked.connect(self.on_treeView_clicked)
 
         self.textEdit = QTextEdit()
 
@@ -81,14 +84,20 @@ class TextEditorDlg(QWidget):
         self.show()
 
         self.selectButton.clicked.connect(self.selectFolder)
+        self.saveAsButton.clicked.connect(self.saveAsFile)
+        self.saveButton.clicked.connect(self.saveFile)
 
     def selectFolder(self):
-        file = ctrl.eventSelectFolder(self)
-        self.titleEdit.setText(self.fileName[0])
+        ctrl.eventSelectFolder(self)
 
-        with file:
-            data = file.read()
-            self.textEdit.setText(data)
+    def on_treeView_clicked(self, index):
+        ctrl.eventClickedOnTreeView(self, index)
+
+    def saveAsFile(self):
+        ctrl.eventSaveAsFile(self)
+
+    def saveFile(self):
+        ctrl.eventSaveFile(self)
 
 
 if __name__ == "__main__":

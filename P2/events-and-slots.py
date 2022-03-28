@@ -77,12 +77,12 @@ class TextEditor(QWidget):
 
     def selectDialog(self):
         home_dir = str(Path.home())
-        self.fileName = QFileDialog.getExistingDirectory(
+        self.fileName[0] = QFileDialog.getExistingDirectory(
             self, 'Open file', home_dir)
-
-        if self.fileName:
-            self.titleEdit.setText(self.fileName)
-            self.tree.setRootIndex(self.model.index(self.fileName))
+        print(self.fileName[0])
+        if self.fileName[0]:
+            self.titleEdit.setText(self.fileName[0])
+            self.tree.setRootIndex(self.model.index(self.fileName[0]))
 
     def showDialog(self):
         home_dir = str(Path.home())
@@ -127,9 +127,11 @@ class TextEditor(QWidget):
     def on_treeView_clicked(self, index):
         indexItem = self.model.index(index.row(), 0, index.parent())
 
-        fileName = self.model.fileName(indexItem)
+        fileNamee = self.model.fileName(indexItem)
+        print(fileNamee)
         self.fileName[0] = self.model.filePath(indexItem)
         self.titleEdit.setText(self.fileName[0])
+        print(self.fileName[0])
 
         f = open(self.fileName[0], 'r')
 

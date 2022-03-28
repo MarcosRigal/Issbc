@@ -21,8 +21,47 @@ import sys
 
 def selectFolder(self):
     home_dir = str(Path.home())
-    self.fileName = QFileDialog.getOpenFileName(self, 'Open file', home_dir)
-
+    self.fileName[0] = QFileDialog.getExistingDirectory(
+        self, 'Open file', home_dir)
+    print(self.fileName[0])
     if self.fileName[0]:
-        file = open(self.fileName[0], 'r')
-        return file
+        self.titleEdit.setText(self.fileName[0])
+        self.filesEdit.setRootIndex(self.model.index(self.fileName[0]))
+
+
+def saveAsFile(self):
+    home_dir = str(Path.home())
+    name = QFileDialog.getSaveFileName(
+        self, 'Save File', home_dir)
+    print(name)
+    if len(name[0]):
+        self.fileName = name
+        f = open(self.fileName[0], 'w')
+        filedata = self.textEdit.toPlainText()
+        f.write(filedata)
+        f.close()
+        self.titleEdit.setText(self.fileName[0])
+
+
+def saveFile(self):
+    if self.fileName == ["Editor de textos", ".txt"]:
+        self.saveAsFile(self)
+    else:
+        f = open(self.fileName[0], 'w')
+        filedata = self.textEdit.toPlainText()
+        f.write(filedata)
+        f.close()
+
+
+def on_treeView_clicked(self, index):
+    indexItem = self.model.index(index.row(), 0, index.parent())
+
+    fileName = self.model.fileName(indexItem)
+    self.fileName[0] = self.model.filePath(indexItem)
+    self.titleEdit.setText(self.fileName[0])
+
+    f = open(self.fileName[0], 'r')
+
+    with f:
+        data = f.read()
+        self.textEdit.setText(data)

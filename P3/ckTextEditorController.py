@@ -18,5 +18,16 @@ import ckModAppTextEditor as mapp
 
 
 def eventSelectFolder(self):
-    file = mapp.selectFolder(self)
-    return file
+    mapp.selectFolder(self)
+
+
+def eventClickedOnTreeView(self, index):
+    mapp.on_treeView_clicked(self, index)
+
+
+def eventSaveAsFile(self):
+    mapp.saveAsFile(self)
+
+
+def eventSaveFile(self):
+    mapp.saveFile(self)
