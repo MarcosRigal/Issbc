@@ -1,13 +1,14 @@
 from select import select
 import sys
 
-from PyQt5.QtWidgets import QWidget, QApplication, QLabel, QLineEdit, QTextEdit, QVBoxLayout, QHBoxLayout, QPushButton, QGridLayout, QFileSystemModel, QTreeView
+from PyQt5.QtWidgets import QWidget, QApplication, QLabel, QLineEdit, QTextEdit, QVBoxLayout, QFileDialog, QPushButton, QGridLayout, QFileSystemModel, QTreeView
+from pathlib import Path
 
 
 class TextEditor(QWidget):
     def __init__(self):
         super().__init__()
-
+        self.fileName = ["Editor de textos", ".txt"]
         self.initUI()
 
     def initUI(self):
@@ -16,11 +17,13 @@ class TextEditor(QWidget):
         self.model.setRootPath("/")
         self.tree = QTreeView()
         self.tree.setModel(self.model)
-        self.tree.setRootIndex(self.model.index("/"))
+        self.tree.setRootIndex(self.model.index("/home/"))
         self.tree.clicked.connect(self.on_treeView_clicked)
 
         self.title = QLabel('Carpeta')
         self.titleEdit = QLineEdit()
+        self.titleEdit.setReadOnly(True)
+        self.titleEdit.setText("/home/")
 
         self.files = QLabel('Archivos')
         self.filesEdit = QTextEdit()
@@ -28,11 +31,17 @@ class TextEditor(QWidget):
         self.textEdit = QTextEdit()
 
         self.selectButton = QPushButton("Carpeta")
+        self.selectButton.clicked.connect(self.selectDialog)
         self.openButton = QPushButton("Abrir")
+        self.openButton.clicked.connect(self.showDialog)
         self.saveButton = QPushButton("Guardar")
+        self.saveButton.clicked.connect(self.saveFile)
         self.saveAsButton = QPushButton("Guardar como")
+        self.saveAsButton.clicked.connect(self.saveAsFile)
         self.closeButton = QPushButton("Cerrar")
+        self.closeButton.clicked.connect(self.close)
         self.exitButton = QPushButton("Exit")
+        self.exitButton.clicked.connect(QApplication.instance().quit)
 
         mainVbox = QVBoxLayout()
         mainVbox.setSpacing(20)
@@ -62,17 +71,67 @@ class TextEditor(QWidget):
 
         self.setLayout(grid)
 
-        self.setGeometry(500, 500, 550, 500)
+        self.setGeometry(500, 500, 900, 500)
         self.setWindowTitle('Review')
         self.show()
+
+    def selectDialog(self):
+        home_dir = str(Path.home())
+        self.fileName = QFileDialog.getExistingDirectory(
+            self, 'Open file', home_dir)
+
+        if self.fileName:
+            self.titleEdit.setText(self.fileName)
+            self.tree.setRootIndex(self.model.index(self.fileName))
+
+    def showDialog(self):
+        home_dir = str(Path.home())
+        self.fileName = QFileDialog.getOpenFileName(
+            self, 'Open file', home_dir)
+
+        if self.fileName[0]:
+            f = open(self.fileName[0], 'r')
+            self.titleEdit.setText(self.fileName[0])
+
+            with f:
+                data = f.read()
+                self.textEdit.setText(data)
+
+    def saveAsFile(self):
+        home_dir = str(Path.home())
+        name = QFileDialog.getSaveFileName(
+            self, 'Save File', home_dir)
+        print(name)
+        if len(name[0]):
+            self.fileName = name
+            f = open(self.fileName[0], 'w')
+            filedata = self.textEdit.toPlainText()
+            f.write(filedata)
+            f.close()
+            self.titleEdit.setText(self.fileName[0])
+
+    def saveFile(self):
+        if self.fileName == ["Editor de textos", ".txt"]:
+            self.saveAsFile()
+        else:
+            f = open(self.fileName[0], 'w')
+            filedata = self.textEdit.toPlainText()
+            f.write(filedata)
+            f.close()
+
+    def close(self):
+        self.textEdit.setText("")
+        self.fileName[0] = ""
+        self.titleEdit.setText(self.fileName[0])
 
     def on_treeView_clicked(self, index):
         indexItem = self.model.index(index.row(), 0, index.parent())
 
         fileName = self.model.fileName(indexItem)
-        filePath = self.model.filePath(indexItem)
+        self.fileName[0] = self.model.filePath(indexItem)
+        self.titleEdit.setText(self.fileName[0])
 
-        f = open(filePath, 'r')
+        f = open(self.fileName[0], 'r')
 
         with f:
             data = f.read()

@@ -18,7 +18,7 @@ from select import select
 import sys
 import ckTextEditorController as ctrl
 
-from PyQt5.QtWidgets import QWidget, QApplication, QLabel, QLineEdit, QTextEdit, QVBoxLayout, QHBoxLayout, QPushButton, QGridLayout
+from PyQt5.QtWidgets import QWidget, QTreeView, QFileSystemModel, QApplication, QLabel, QLineEdit, QTextEdit, QVBoxLayout, QHBoxLayout, QPushButton, QGridLayout
 
 
 class TextEditorDlg(QWidget):
@@ -34,7 +34,11 @@ class TextEditorDlg(QWidget):
         self.selectButton = QPushButton("Seleccionar")
 
         self.files = QLabel('Archivos')
-        self.filesEdit = QTextEdit()
+        self.model = QFileSystemModel()
+        self.model.setRootPath("/")
+        self.filesEdit = QTreeView()
+        self.filesEdit.setModel(self.model)
+        self.filesEdit.setRootIndex(self.model.index("/home/"))
 
         self.textEdit = QTextEdit()
 
@@ -66,7 +70,7 @@ class TextEditorDlg(QWidget):
         grid.addWidget(self.textEdit, 1, 2, 1, 5)
 
         grid.addWidget(self.saveButton, 2, 0)
-        grid.addWidget(self.saveAsButton, 2,1)
+        grid.addWidget(self.saveAsButton, 2, 1)
 
         mainVbox.addLayout(grid)
 
