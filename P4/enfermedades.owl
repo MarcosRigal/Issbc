@@ -1,0 +1,229 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.enfermedades.com#"
+     xml:base="http://www.enfermedades.com"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.enfermedades.com">
+        <rdfs:comment>An hospital ontology.</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.enfermedades.com#Diagnostico_de -->
+
+    <owl:ObjectProperty rdf:about="http://www.enfermedades.com#Diagnostico_de">
+        <rdfs:domain rdf:resource="http://www.enfermedades.com#Paciente"/>
+        <rdfs:range rdf:resource="http://www.enfermedades.com#Enfermedad"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.enfermedades.com#Sintoma -->
+
+    <owl:ObjectProperty rdf:about="http://www.enfermedades.com#Sintoma">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <owl:inverseOf rdf:resource="http://www.enfermedades.com#Sintoma_de"/>
+        <rdfs:domain rdf:resource="http://www.enfermedades.com#Enfermedad"/>
+        <rdfs:range rdf:resource="http://www.enfermedades.com#Sintoma"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.enfermedades.com#Sintoma_de -->
+
+    <owl:ObjectProperty rdf:about="http://www.enfermedades.com#Sintoma_de">
+        <rdfs:domain rdf:resource="http://www.enfermedades.com#Sintoma"/>
+        <rdfs:range rdf:resource="http://www.enfermedades.com#Enfermedad"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.enfermedades.com#Tratada_con -->
+
+    <owl:ObjectProperty rdf:about="http://www.enfermedades.com#Tratada_con">
+        <rdfs:domain rdf:resource="http://www.enfermedades.com#Enfermedad"/>
+        <rdfs:range rdf:resource="http://www.enfermedades.com#Tratamiento"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.enfermedades.com#Tratamiento_de -->
+
+    <owl:ObjectProperty rdf:about="http://www.enfermedades.com#Tratamiento_de">
+        <rdfs:domain rdf:resource="http://www.enfermedades.com#Tratamiento"/>
+        <rdfs:range rdf:resource="http://www.enfermedades.com#Enfermedad"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.enfermedades.com#Codigo -->
+
+    <owl:DatatypeProperty rdf:about="http://www.enfermedades.com#Codigo">
+        <rdfs:domain rdf:resource="http://www.enfermedades.com#Enfermedad"/>
+        <rdfs:domain rdf:resource="http://www.enfermedades.com#Sintoma"/>
+        <rdfs:domain rdf:resource="http://www.enfermedades.com#Tratamiento"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.enfermedades.com#Edad -->
+
+    <owl:DatatypeProperty rdf:about="http://www.enfermedades.com#Edad">
+        <rdfs:domain rdf:resource="http://www.enfermedades.com#Paciente"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.enfermedades.com#Nombre -->
+
+    <owl:DatatypeProperty rdf:about="http://www.enfermedades.com#Nombre">
+        <rdfs:domain rdf:resource="http://www.enfermedades.com#Enfermedad"/>
+        <rdfs:domain rdf:resource="http://www.enfermedades.com#Paciente"/>
+        <rdfs:domain rdf:resource="http://www.enfermedades.com#Sintoma"/>
+        <rdfs:domain rdf:resource="http://www.enfermedades.com#Tratamiento"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.enfermedades.com#Peso -->
+
+    <owl:DatatypeProperty rdf:about="http://www.enfermedades.com#Peso">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.enfermedades.com#Paciente"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.enfermedades.com#Seguridad_Social -->
+
+    <owl:DatatypeProperty rdf:about="http://www.enfermedades.com#Seguridad_Social">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.enfermedades.com#Paciente"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.enfermedades.com#Enfermedad -->
+
+    <owl:Class rdf:about="http://www.enfermedades.com#Enfermedad"/>
+    
+
+
+    <!-- http://www.enfermedades.com#Paciente -->
+
+    <owl:Class rdf:about="http://www.enfermedades.com#Paciente"/>
+    
+
+
+    <!-- http://www.enfermedades.com#Sintoma -->
+
+    <owl:Class rdf:about="http://www.enfermedades.com#Sintoma"/>
+    
+
+
+    <!-- http://www.enfermedades.com#Tratamiento -->
+
+    <owl:Class rdf:about="http://www.enfermedades.com#Tratamiento"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.enfermedades.com#Enfermedad1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.enfermedades.com#Enfermedad1">
+        <rdf:type rdf:resource="http://www.enfermedades.com#Enfermedad"/>
+        <Sintoma_de rdf:resource="http://www.enfermedades.com#Sintoma1"/>
+        <Codigo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1as</Codigo>
+        <Nombre rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gripe</Nombre>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.enfermedades.com#Paciente1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.enfermedades.com#Paciente1">
+        <rdf:type rdf:resource="http://www.enfermedades.com#Paciente"/>
+        <Sintoma_de rdf:resource="http://www.enfermedades.com#Enfermedad1"/>
+        <Tratada_con rdf:resource="http://www.enfermedades.com#Tratamiento"/>
+        <Edad rdf:datatype="http://www.w3.org/2001/XMLSchema#int">20</Edad>
+        <Nombre rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alfredo</Nombre>
+        <Peso rdf:datatype="http://www.w3.org/2001/XMLSchema#float">65.0</Peso>
+        <Seguridad_Social rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1254685A</Seguridad_Social>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.enfermedades.com#Sintoma1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.enfermedades.com#Sintoma1">
+        <rdf:type rdf:resource="http://www.enfermedades.com#Sintoma"/>
+        <Codigo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3as</Codigo>
+        <Nombre rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mocos</Nombre>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.enfermedades.com#Tratamiento -->
+
+    <owl:NamedIndividual rdf:about="http://www.enfermedades.com#Tratamiento">
+        <rdf:type rdf:resource="http://www.enfermedades.com#Tratamiento"/>
+        <Codigo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A2</Codigo>
+        <Nombre rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Frenadol</Nombre>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+
