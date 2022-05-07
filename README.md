@@ -1,5 +1,5 @@
 <div align="center">
-    <img width="100%" src="https://iasolver.es/wp-content/uploads/2021/03/Portada.jpg" alt="FOTO">
+    <img width="100%" src="https://laprensa7dias.com/wp-content/uploads/2021/11/ia.jpg" alt="FOTO">
 </div>
 
 # Instructions:
