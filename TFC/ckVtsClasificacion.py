@@ -8,19 +8,39 @@ Created on Sat Jan 18 11:29:53 2014
 
 import sys
 from PyQt5 import QtWidgets, QtCore
-from PyQt5.QtWidgets import QWidget, QCheckBox, QApplication
+from PyQt5.QtWidgets import QWidget
 
 import ckCtrlClasificacion as ctrl
 
-#import mcIris as mc    #Cambiar al cambiar el MC ver en main
-import mcFrutos as mc #ver en main
+import mcIris as mc    #Cambiar al cambiar el MC ver en main
+#import mcFrutos as mc #ver en main
+
+lct1=[[ctrl.ma.mc.Atributo('Ancho sepalo','int','mm'),25],
+       [ctrl.ma.mc.Atributo('Largo sepalo','int','mm'),110],
+       [ctrl.ma.mc.Atributo('Ancho petalo','int','mm'),30],
+       [ctrl.ma.mc.Atributo('Largo petalo','int','mm'),95]]
+llct1=ctrl.ma.mc.creaCaracteristicas(lct1)
+ob1=ctrl.ma.mc.Objeto('ob1',llct1)
+ob1.describeObjeto()
+
+
+lct=[[ctrl.ma.mc.Atributo('diametro','int','cm'),180],
+     [ctrl.ma.mc.Atributo('peso','int','gr'),8000],
+     [ctrl.ma.mc.Atributo('color','str',None),'verde']]
+
+
+llct=ctrl.ma.mc.creaCaracteristicas(lct)
+ob2=ctrl.ma.mc.Objeto('ob2',llct)
+
+ob=ob2
+ob.describeObjeto()
 
 
 
 class ClasificacionDlg(QWidget):
-    def __init__(self,objeto=None):
+    def __init__(self):
         super(ClasificacionDlg, self).__init__()
-        self.objeto=objeto 
+        self.objeto=ob1 
         #Label
         labelTableWidgetObjeto=QtWidgets.QLabel("Objeto",self)  
         labelClasesCandidatas=QtWidgets.QLabel("Clases candidatas",self)
@@ -35,13 +55,13 @@ class ClasificacionDlg(QWidget):
         #Widget
         header = ['ATRIBUTO', 'VALOR']
         #posiblesFallos = Fallos(self,   observables_list, header)
-        self.tableWidgetObjeto = QtWidgets.QTableWidget(len(objeto.caracteristicas),2) #Crea la tabla de elementos observables de dos columnas
+        self.tableWidgetObjeto = QtWidgets.QTableWidget(len(ob1.caracteristicas),2) #Crea la tabla de elementos observables de dos columnas
         self.tableWidgetObjeto.setColumnWidth(0, 140) #Asignan ancho a las columnas
         self.tableWidgetObjeto.setColumnWidth(1, 200) #Asignan ancho a las columnas
         self.tableWidgetObjeto.setHorizontalHeaderLabels(header) #Asigna etiquetas a las columnas
         #print observables
         i=0
-        for at in objeto.caracteristicas:
+        for at in ob1.caracteristicas:
             print (at)
             print  (at.atributo.nombre,at.atributo.tipo, at.valor,type(at.valor),at.atributo.unidad)#,
             item1 = QtWidgets.QTableWidgetItem(at.atributo.nombre) #Crea un item y le asigna el nombre de la observable
@@ -89,8 +109,8 @@ class ClasificacionDlg(QWidget):
 
         #Dominio
         self.comboboxWidgetDominio = QtWidgets.QComboBox()
-        self.comboboxWidgetDominio.addItem('Coches')
-        self.comboboxWidgetDominio.addItem('Motos') 
+        self.comboboxWidgetDominio.addItem('Frutos')
+        self.comboboxWidgetDominio.addItem('Iris') 
         
         #Botones
         self.clasificarButtom=QtWidgets.QPushButton('Clasificar')
@@ -144,7 +164,10 @@ class ClasificacionDlg(QWidget):
         #self.generarButtom.clicked.connect(self.generar)
         self.clasificarButtom.clicked.connect(self.clasificar)
         self.salirButtom.clicked.connect(self.close)
+        self.comboboxWidgetDominio.currentIndexChanged.connect(self.hola)
 
+    def hola(self):
+        print(self.comboboxWidgetDominio.currentText())
 
     def generar(self):
         print ('generar')

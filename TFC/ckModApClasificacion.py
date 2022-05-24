@@ -3,8 +3,8 @@ Created on Sun Jan 19 12:19:10 2014
 
 @author: acalvo
 """
-import mcFrutos as mc #Cambiar al cambiar el MC
-#import mcIris as mc #Cambiar al cambiar el MC
+#import mcFrutos as mc #Cambiar al cambiar el MC
+import mcIris as mc #Cambiar al cambiar el MC
 
 class Tarea():
     def __init__(self):

@@ -8,35 +8,11 @@ Created on Sat Jan 18 11:29:53 2014
 """
 
 import sys
-from PyQt5 import QtWidgets, QtCore
-from PyQt5.QtWidgets import QWidget, QCheckBox, QApplication
-#from PyQt4 import QtGui
+from PyQt5 import QtWidgets
 import ckVtsClasificacion as vts
-import mcFrutos as mc #Cambiar al cambiar el MC
-#import mcIris as mc #Cambiar al cambiar el MC
-
-lct1=[[vts.ctrl.ma.mc.Atributo('Ancho sepalo','int','mm'),25],
-       [vts.ctrl.ma.mc.Atributo('Largo sepalo','int','mm'),110],
-       [vts.ctrl.ma.mc.Atributo('Ancho petalo','int','mm'),30],
-       [vts.ctrl.ma.mc.Atributo('Largo petalo','int','mm'),95]]
-llct1=vts.ctrl.ma.mc.creaCaracteristicas(lct1)
-ob1=vts.ctrl.ma.mc.Objeto('ob1',llct1)
-ob1.describeObjeto()
-
-
-lct=[[vts.ctrl.ma.mc.Atributo('diametro','int','cm'),180],
-     [vts.ctrl.ma.mc.Atributo('peso','int','gr'),8000],
-     [vts.ctrl.ma.mc.Atributo('color','str',None),'verde']]
-
-
-llct=vts.ctrl.ma.mc.creaCaracteristicas(lct)
-ob2=vts.ctrl.ma.mc.Objeto('ob2',llct)
-
-ob=ob2
-ob.describeObjeto()
 
 app =  QtWidgets.QApplication(sys.argv)
-form = vts.ClasificacionDlg(ob)
+form = vts.ClasificacionDlg()
 sys.exit(app.exec_())
 
 
