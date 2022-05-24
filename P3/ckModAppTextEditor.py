@@ -12,7 +12,7 @@
    y simplificar la lectura, solo comentaré las funciones
    nuevas de este ejercicio. El resto que aparezcan sin
    comentar, habrán sido comentadas en ejercicios anteriores.
-   """
+"""
 
 from pathlib import Path
 from PyQt5.QtWidgets import (QFileDialog)
