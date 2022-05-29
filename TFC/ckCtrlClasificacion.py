@@ -5,7 +5,6 @@ Created on Sun Jan 19 10:28:45 2014
 
 @author: acalvo
 """
-from PyQt5.QtWidgets import QWidget
 import ckModApClasificacion as ma
 
 def eventGenerar(clasificacionDlg):
@@ -19,17 +18,17 @@ def eventClasificar(clasificacionDlg):
     pass
     print ('Objeto:', clasificacionDlg.objeto)
     print ('================================\n')
-    mp=ma.MetodoPoda(clasificacionDlg.objeto) #Se crea la instancia del método de la poda
-    r,exp=mp.execute()#se ejecuta el método
-    clasificacionDlg.plainTextEditExplicacion.clear()#Se borra la explicación
-    clasificacionDlg.plainTextEditExplicacion.appendPlainText(exp)#Se presenta la nueva explicación
+    mp=ma.MetodoPoda(clasificacionDlg.objeto) #Se crea la instancia del mï¿½todo de la poda
+    r,exp=mp.execute()#se ejecuta el mï¿½todo
+    clasificacionDlg.plainTextEditExplicacion.clear()#Se borra la explicaciï¿½n
+    clasificacionDlg.plainTextEditExplicacion.appendPlainText(exp)#Se presenta la nueva explicaciï¿½n
     #clasificacionDlg.plainTextEditExplicacion.moveCursor(QWidget.QTextCursor.Start)
     cs=[]
     for cc in r:
         print ('         ->',cc.nombre)
         cs.append(cc.nombre)
     clasificacionDlg.listWidgetClasesSeleccionadas.clear()
-    clasificacionDlg.listWidgetClasesSeleccionadas.addItems(cs) #Se añaden las clases resultado de la clasificación 
+    clasificacionDlg.listWidgetClasesSeleccionadas.addItems(cs) #Se aï¿½aden las clases resultado de la clasificaciï¿½n 
     # al control listbox para que lo presente.
     
     print ('Las clases candidatas: ',r)

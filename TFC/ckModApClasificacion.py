@@ -3,8 +3,8 @@ Created on Sun Jan 19 12:19:10 2014
 
 @author: acalvo
 """
-#import mcFrutos as mc #Cambiar al cambiar el MC
-import mcIris as mc #Cambiar al cambiar el MC
+import mcFrutos as mcf #Cambiar al cambiar el MC
+import mcIris as mci #Cambiar al cambiar el MC
 
 class Tarea():
     def __init__(self):
@@ -198,7 +198,10 @@ class Generar(Inferencia):
         print ('Ejecución de la inferencia generar')
         print ('===================================')
         print 
-        clases=mc.clases() #Se ha simplificado mucho y devuelve todas 
+        if self.comboboxWidgetDominio.currentText() == 'Iris':
+            clases=mci.clases() #Se ha simplificado mucho y devuelve todas 
+        else:
+            clases=mcf.clases() #Se ha simplificado mucho y devuelve todas 
                              #las clases candidatas
         return clases
         
@@ -252,85 +255,6 @@ class Especificar(Inferencia):
                                                       #que ya se han usado
             
             return None,None #Si todos los atributos están        
-
-if __name__ == '__main__':
-    diametro=mc.Atributo('diametro','int','cm')
-    peso=mc.Atributo('peso','int','gr')
-    color=mc.Atributo('color','str',None)
-    at=mc.Atributo('diametro','int','mm')
-    lct=[[diametro,200],[peso,6000],[color,'verde']]
-    #
-    #lct=[[mc.Atributo('Ancho sepalo','int','mm'),25],[mc.Atributo('Largo sepalo','int','mm'),110],[mc.Atributo('Ancho petalo','int','mm'),30],
-     #             [mc.Atributo('Largo petalo','int','mm'),85]]
-    ob1=mc.Objeto('p1',mc.creaCaracteristicas(lct))#se crea un objeto a partir de las instancias de la lista de caracteristicas
-    cont='s'
-    while cont=='s':
-        ej=int(input('Entre la prueba (1,2,3,4,5):' ))
-        if ej==1:  #Pruebas sobre la inferencia generar:
-                   #Dado un objeto generar todas las posibles clases candidatas
-           print ('Porbando la inferencia genrar')
-           clases= mc.clases()
-           print (clases)
-           ob1.describeObjeto()#de describe el objeto.
-           g=Generar(ob1)
-           clasesCandidatas=g.execute()
-           for c in clasesCandidatas:
-               print (c.nombre)
-        if ej==2: #Pruebas sobre la inferencia obtener:
-        
-           #lcat=[[diametro,30],[peso,30],[color,'verde']]
-           #lct=[[mc.Atributo('Ancho sepalo','int','mm'),30],[mc.Atributo('Largo sepalo','int','mm'),30],[mc.Atributo('Ancho petalo','int','mm'),45]]
-           ob=mc.Objeto('ob1',mc.creaCaracteristicas(lct))#creo el objeto
-           ob.describeObjeto()
-           obt=Obtener(ob,at)
-           rObtener=obt.execute()
-           print ('valor devuelto para el atributo:')
-           print (rObtener.atributo.nombre, rObtener.valor, rObtener.atributo.unidad)
-           #print 'valor devuelto para el atributo:',obt.execute().atributo.nombre,obt.execute().valor
-        if ej==3: #Prueba de la inferencia especificar: 
-            clases=mc.clases()
-            latrUsados=[]
-            infEsp=Especificar(clases,latrUsados) #Especifica un atributo de los no usados
-            r=infEsp.execute()
-            print (r[0].nombre)
-            print
-            while not r==(None,None): #Llama a la inferencia especificar hasta que no queden las atributos:
-                                      # por extraer
-                print ('r:',r)
-                print (r[0].nombre)
-                infEsp=Especificar(clases,latrUsados) #Especifica un atributo de los no usados
-                r=infEsp.execute()
-                #if not r==(None,None):
-                #    print  r[0].nombre 
-        if ej==4: #Prueba del método de la tarea:
-            #4lcat=[[diametro,180],[peso,6000],[color,'verde']]
-            #lct=[[mc.Atributo('Ancho sepalo','int','mm'),25],[mc.Atributo('Largo sepalo','int','mm'),110],[mc.Atributo('Ancho petalo','int','mm'),30],
-            #      [mc.Atributo('Largo petalo','int','mm'),85]]
-            ob=mc.Objeto('ob1',mc.creaCaracteristicas(lct))#creo el objeto
-            mp=MetodoPoda(ob) #Se crea la instancia del método de la poda
-            r,exp=mp.execute()#se ejecuta el método
-            print ('==================================')
-            print
-            print ('Clases a las que pertenece el objeto:')
-            for cc in r:
-                print ('         ->',cc.nombre)
-            
-            print ('Explicación')
-            print ('===========')
-            
-            print (exp)
-        
-        if ej==5:
-            #Por hacer y mejorar
-            #lcat=[[diametro,180],[peso,6],[color,'verde']]
-            #ob=mc.Objeto('ob1',mc.creaCaracteristicas(lcat))#creo el objeto
-            #cl = Clasificacion(bccf,ob)
-            #print cl.bc
-            #print cl.bc.clases()
-            pass
-        
-
-        cont = input('Desea continuar(s/n): ')
     
        
        

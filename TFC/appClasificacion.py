@@ -2,9 +2,19 @@
 # -*- coding: utf-8 -*-
 
 """
-Created on Sat Jan 18 11:29:53 2014
+Trabajo Final de Curso ISBC
 
-@author: acalvo
+Aplicación Clasificador
+
+Con este fichero se lanza la aplicación
+
+Authors: Marcos Rivera Gavilan, Marcos Rodriguez Moreno, Moises Moyano Cejudo
+Website: https://www.uco.es/~i92rigam/
+
+Importante: Para reducir el número de comentarios,
+y simplificar la lectura, solo comentaré las funciones
+nuevas de este fichero. El resto que aparezcan sin
+comentar, habrán sido comentadas en otros ficheros.
 """
 
 import sys
