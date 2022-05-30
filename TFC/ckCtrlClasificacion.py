@@ -19,7 +19,7 @@ def eventClasificar(clasificacionDlg):
     print ('Objeto:', clasificacionDlg.objeto)
     print ('================================\n')
     mp=ma.MetodoPoda(clasificacionDlg.objeto) #Se crea la instancia del m�todo de la poda
-    r,exp=mp.execute()#se ejecuta el m�todo
+    r,exp=mp.execute(clasificacionDlg)#se ejecuta el m�todo
     clasificacionDlg.plainTextEditExplicacion.clear()#Se borra la explicaci�n
     clasificacionDlg.plainTextEditExplicacion.appendPlainText(exp)#Se presenta la nueva explicaci�n
     #clasificacionDlg.plainTextEditExplicacion.moveCursor(QWidget.QTextCursor.Start)

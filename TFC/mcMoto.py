@@ -1,11 +1,11 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: iso-8859-1 -*-
 """
 Created on Sun Jan 19 12:19:10 2014
 
 @author: acalvo
 """
-#----LA CLASE GENERAL -------------------------------------------
+#----LA CLASE GENERAL ------------------------------------------- 
 class Clase():
     u'''Clase en la jerarqu�a m�s alta.
     '''
@@ -37,66 +37,61 @@ class Clase():
         return descripcion    
                 
     
-#----LAS CLASES DE LA BASE DE CONOCIMIENTO DE FRUTOS-----------
-class Fruto(Clase):
+#----LAS CLASES DE LA BASE DE CONOCIMIENTO DE IRIS-----------
+class Moto(Clase):
     '''Describe los atributos por los que se caracterizar� a un fruto.
     '''
     def __init__(self,nombre):
         '''
-        @param nombre: Nombre del fruto
+        @param nombre: Nombre de la Moto
         '''
         Clase.__init__(self,nombre=nombre)
         
-        atColor=Atributo('color','str',None)
-        atDiametro=Atributo('diametro','int','cm')
-        atPeso=Atributo('peso','int','gr')
-        #Se establece la lista de atributos que posee esta clase
-        self.atributos=[atColor,atPeso,atDiametro]
+        self.atAS=Atributo('Marca','str', None)
+        self.atLS=Atributo('Carroceria','str','None')
+        self.atAP=Atributo('Tiempos','int','nº')
+        self.atLP=Atributo('Potencia','int','cv')
+ 
         
-class Naranja(Fruto):
+        #Se establece la lista de atributos que posee esta clase
+        self.atributos=[self.atAS,self.atLS,self.atAP,self.atLP]
+
+#Setosa,Virginica, Versicolor
+class Kawasaki_Ninja_125(Moto):
     '''
-    El objeto es una naranja si su color es naranja, el peso
-    debe de estar en un rango determinado y el diametro debe
-    de estar en un rango determinado.
+    El objeto es una  Moto .
     
     '''
     def __init__(self):
-        Fruto.__init__(self,nombre='naranja')# Se inicia con el nombre naranja
-        #Reglas que debe de verificar la naranja
-        atColor=Atributo('color','str',None)
-        atDiametro=Atributo('diametro','int','cm')
-        atPeso=Atributo('peso','int','gr')
-        
-        r1=Rverifica(idRegla='r1',tipo='igual',subtipo=None,atributo=atColor,valorEsperado='naranja')
-        #El diametro debe de estar entre 10 y 30
-        r2=Rverifica(idRegla='r2',tipo='rango',subtipo=None,atributo=atDiametro,valorEsperado=[10,30])
-        #el peso debe de estar entre 100 y 200
-        r3=Rverifica(idRegla='r3',tipo='rango',subtipo=None,atributo=atPeso,valorEsperado=[100,200])
-        self.reglas=[r1,r2,r3]
+        Moto.__init__(self,nombre='Kawasaki Ninja 125')# Se inicia con el nombre naranja
+        #Reglas que debe de verificar la  Moto Setosa
+        r1=Rverifica(idRegla='r1',tipo='igual',subtipo=None,atributo=self.atAS,valorEsperado=["Kawasaki"])
+        r2=Rverifica(idRegla='r2',tipo='igual',subtipo=None,atributo=self.atLS,valorEsperado=["Deportiva"])
+        r3=Rverifica(idRegla='r3',tipo='igual',subtipo=None,atributo=self.atAP,valorEsperado=[2])
+        r4=Rverifica(idRegla='r4',tipo='rango',subtipo=None,atributo=self.atLP,valorEsperado=[10,15])
+        self.reglas=[r1,r2,r3,r4]
         pass
         
-class Limon(Fruto):
+class BMW_K_1600_GRAND_AMERICA(Moto):
     def __init__(self):
-        Fruto.__init__(self,nombre='limon')
-        atColor=Atributo('color','str',None)
-        atDiametro=Atributo('diametro','int','cm')
-        atPeso=Atributo('peso','int','gr')
-        r1=Rverifica(idRegla='r1',tipo='igual',subtipo=None,atributo=atColor,valorEsperado='amarillo')
-        r2=Rverifica(idRegla='r2',tipo='rango',subtipo=None,atributo=atDiametro,valorEsperado=[10,30])
-        r3=Rverifica(idRegla='r3',tipo='rango',subtipo=None,atributo=atPeso,valorEsperado=[100,200])
-        self.reglas=[r1,r2,r3]
+        Moto.__init__(self,nombre='BMW K 1600 GRAND AMERICA')
+        r1=Rverifica(idRegla='r1',tipo='igual',subtipo=None,atributo=self.atAS,valorEsperado=["BMW"])
+        r2=Rverifica(idRegla='r2',tipo='igual',subtipo=None,atributo=self.atLS,valorEsperado=["Americana"])
+        r3=Rverifica(idRegla='r3',tipo='igual',subtipo=None,atributo=self.atAP,valorEsperado=[4])
+        r4=Rverifica(idRegla='r4',tipo='rango',subtipo=None,atributo=self.atLP,valorEsperado=[100,170])
+
+        self.reglas=[r1,r2,r3,r4]
 
 
-class Sandia(Fruto):
+class YAMAHA_YZ85(Moto):
     def __init__(self):
-        Fruto.__init__(self,nombre='sandia')
-        atColor=Atributo('color','str',None)
-        atDiametro=Atributo('diametro','int','cm')
-        atPeso=Atributo('peso','int','gr')
-        r1=Rverifica(idRegla='r1',tipo='igual',subtipo=None,atributo=atColor,valorEsperado='verde')
-        r2=Rverifica(idRegla='r2',tipo='rango',subtipo=None,atributo=atDiametro,valorEsperado=[100,300])
-        r3=Rverifica(idRegla='r3',tipo='rango',subtipo=None,atributo=atPeso,valorEsperado=[1000,8000])
-        self.reglas=[r1,r2,r3]
+        Moto.__init__(self,nombre='YAMAHA YZ85')
+        r1=Rverifica(idRegla='r1',tipo='igual',subtipo=None,atributo=self.atAS,valorEsperado=["YAMAHA"])
+        r2=Rverifica(idRegla='r2',tipo='igual',subtipo=None,atributo=self.atLS,valorEsperado=["Motocross"])
+        r3=Rverifica(idRegla='r3',tipo='igual',subtipo=None,atributo=self.atAP,valorEsperado=[2])
+        r4=Rverifica(idRegla='r4',tipo='rango',subtipo=None,atributo=self.atLP,valorEsperado=[12,28])
+        self.reglas=[r1,r2,r3,r4]
+
         
          
 
@@ -207,28 +202,28 @@ def clases():
     '''
     Crea una lista de clases candidatas de la base de conocimiento.
     '''
-    naranja=Naranja()
-    limon=Limon()
-    sandia=Sandia()
-    lClases=[naranja,limon,sandia]
+    #Setosa,Virginica, Versicolor
+    kawasaki_Ninja_125=Kawasaki_Ninja_125()
+    bMW_K_1600_GRAND_AMERICA=BMW_K_1600_GRAND_AMERICA()
+    yAMAHA_YZ85=YAMAHA_YZ85()
+    lClases=[kawasaki_Ninja_125,bMW_K_1600_GRAND_AMERICA,yAMAHA_YZ85]
     return lClases
 
     
 def creaCaracteristicas(lct=[[Atributo('diametro','int','cm'),30]]):
     '''Dada una lista de atributos en forma de lista donde
     se especifica el  atributo y el valor
-   se crean las inancias de dichos atributos
+   se crean las instancias de dichos atributos
     @return: Devuelve una lista de caracteristicas.
     '''
     print (lct)
     carats=[]
     for ct in lct:
-        print (ct[0],ct[1])
         caract=Caracteristica(ct[0],ct[1])
         carats.append(caract)
     return carats
     
-def creaAtributosBC(lat=[('diametro','int','unidad')]):
+def creaAtributosBC(lat=[('atAS','int','mm')]):
     '''Dada una lista de atributos en forma de tupla donde
     se especifica el nombre del atributo, el tipo se  obtiene la lista de 
     atributos con la que se trabaja en la base de conocimiento.'''
@@ -241,7 +236,8 @@ def creaAtributosBC(lat=[('diametro','int','unidad')]):
 
 
 def buscaReglaComparableEnUnaClase(ct,clase):
-    for r in cNaranja.reglas:
+    for r in clase.reglas:
+        print (r.atributo.nombre, ct.atributo.nombre)
         if r.atributo.nombre==ct.atributo.nombre:
             rb=r
             break
@@ -253,19 +249,19 @@ def buscaReglaComparableEnUnaClase(ct,clase):
 if __name__ == '__main__':
     cont='s'
     while cont=='s':
-        ej=input('Entre la prueba (1,2,3,4,5):' )
+        ej=int(input('Entre la prueba (1,2,3,4,5):' ))
         
         if ej==1:#Crea la lista de atributos que va a usar la base de conocimiento
-            atributos=creaAtributosBC([('diametro','int','cm'),('color','str',None),('peso','int','gr')])
+            atributos=creaAtributosBC([('atAS','int','mm'),('atLS','int','mm'),('atAP','int','mm'),('atLP','int','mm')])
             print (atributos)
             for at in atributos:
                 print (at.nombre, at.tipo, at.unidad)
                 
         if ej==2:#Crear un objeto porporcionando una lista de atributos
             lcts=[]
-            ct1=Caracteristica(Atributo('diametro','int','cm'),30)
+            ct1=Caracteristica(Atributo('atAS','int','mm'),30)
             lcts.append(ct1)
-            ct2=Caracteristica(Atributo('peso','int','gr'),60)
+            ct2=Caracteristica(Atributo('atAP','int','mm'),60)
             lcts.append(ct2)
             ob=Objeto('ob1',lcts) #Crea el objeto
             for ct in ob.caracteristicas:
@@ -274,38 +270,34 @@ if __name__ == '__main__':
             ob.describeObjeto()
             #print clases()
         if ej==25:#Crear un conjunto de caracter�sticas
-            c1=Caracteristica(Atributo('diametro','int','cm'),30)
-            print (c1.atributo.nombre, c1.atributo.tipo,c1.atributo.unidad,c1.valor)
+            c1=Caracteristica(Atributo('atAS','int','mm'),30)
+            print  ( c1.atributo.nombre, c1.atributo.tipo,c1.atributo.unidad,c1.valor)
             pass
         if ej==3:#Crea un objeto pasando su identificador y los valores de los atributos
             
-            lct=[[Atributo('diametro','int','cm'),30],[Atributo('peso','int','gr'),30],[Atributo('color','str',None),'verde']]
+            lct=[[Atributo('atAS','int','mm'),30],[Atributo('atAP','int','mm'),30],[Atributo('atLP','int','mm'),45]]
+            print (lct)
             llct=creaCaracteristicas(lct)#Se crean instancias de la lista de atributos
             ob=Objeto('p1',llct)#se crea un objeto a partir de las instancias de la lista de atributos
             ob.describeObjeto()#de describe el objeto.
  
             pass
-        if ej==4:
+        if ej==4:#Crea el conjunto de clases candidatas
             print (clases())
             for c in clases():
                 print (c.nombre)
             cls=clases()
             
         if ej==5:
-            #Se crean instancias de atributos a usar
-            atColor=Atributo('color','str',None)
-            atDiametro=Atributo('diametro','int','cm')
-            atPeso=Atributo('peso','int','gr')
-            #Se crear reglas de tipo verifica
-            #r1=Rverifica(idRegla='r1',tipo='igual',subtipo=None,atributo=atColor,valorEsperado='rojo')
-            #r2=Rverifica(idRegla='r2',tipo='rango',subtipo=None,atributo=atDiametro,valorEsperado=[10,30])
-            #r3=Rverifica(idRegla='r3',tipo='rango',subtipo=None,atributo=atPeso,valorEsperado=[100,200])
-            #reglas=[r1,r2,r3]
-            cNaranja=Naranja()
-            print ('descripcion de Naranja', cNaranja.descripcion())
+          
+            cYAMAHA_YZ85=YAMAHA_YZ85()
+            print ('descripcion de Moto', cYAMAHA_YZ85.descripcion())
+            lct=[[Atributo('Marca','str', None),'YAMAHA'],[Atributo('Carroceria','str','None'),'Motocross'],[Atributo('Tiempos','int','nº'),2],[Atributo('Potencia','int','cv'),25]]
+            print (lct)
+            llct=creaCaracteristicas(lct)#Se crean instancias de la lista de atributos
+
             
-            
-            ob=Objeto('p1',creaCaracteristicas([[Atributo('peso','int','gr'),150],[Atributo('diametro','int','cm'),15],[Atributo('color','str',None),'verde']]))#se crea un objeto a partir de las instancias de la lista de atributos
+            ob=Objeto('p1',llct)#se crea un objeto a partir de las instancias de la lista de atributos
             ob.describeObjeto()#de describe el objeto.
             
             #r2.descripcion()
@@ -321,7 +313,14 @@ if __name__ == '__main__':
             #print rb.atributo.nombre
             #print
             #print 'buscando regla'
-            rb=buscaReglaComparableEnUnaClase(ob.caracteristicas[2],cNaranja)
+            rb=buscaReglaComparableEnUnaClase(ob.caracteristicas[2],cYAMAHA_YZ85)
                         
         cont = input('Desea continuar(s/n): ')
+        print (cont)
+        #mydata = input('Prompt :')
+        #print (mydata)
+        
+        
+        
+        
         

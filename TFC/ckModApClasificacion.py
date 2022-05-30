@@ -3,8 +3,8 @@ Created on Sun Jan 19 12:19:10 2014
 
 @author: acalvo
 """
-import mcFrutos as mcf #Cambiar al cambiar el MC
-import mcIris as mci #Cambiar al cambiar el MC
+import mcMoto as mcf #Cambiar al cambiar el MC
+import mcCoche as mci #Cambiar al cambiar el MC
 
 class Tarea():
     def __init__(self):
@@ -36,10 +36,10 @@ class MetodoPoda():
         self.conjuntoNuevosValores=[]
         self.explicacion=u''
         pass
-    def execute(self):
+    def execute(self,clasificacionDlg):
         # Se generan las posibles clases candidatas
         g=Generar(self.obj)
-        self.clasesCandidatas=g.execute()
+        self.clasesCandidatas=g.execute(clasificacionDlg)
         self.explicacion+=u'Se generam las clases candidatas que son:\n'
         for cc in self.clasesCandidatas:
             self.explicacion+=cc.nombre+'\n'
@@ -193,12 +193,12 @@ class Generar(Inferencia):
     def __init__(self,objeto):
         Inferencia.__init__(self)
         self.objeto=objeto
-    def execute(self): #Ejecución del método de la inferencia:
+    def execute(self, clasificacionDlg): #Ejecución del método de la inferencia:
         print ('===================================')
         print ('Ejecución de la inferencia generar')
         print ('===================================')
         print 
-        if self.comboboxWidgetDominio.currentText() == 'Iris':
+        if clasificacionDlg.comboboxWidgetDominio.currentText() == 'Coches':
             clases=mci.clases() #Se ha simplificado mucho y devuelve todas 
         else:
             clases=mcf.clases() #Se ha simplificado mucho y devuelve todas 

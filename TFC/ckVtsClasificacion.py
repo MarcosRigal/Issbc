@@ -25,21 +25,22 @@ from PyQt5.QtWidgets import QWidget
 
 import ckCtrlClasificacion as ctrl
 
-import mcIris as mci  # Cambiar al cambiar el MC ver en main
-import mcFrutos as mcf  # ver en main
+import mcCoche as mci  # Cambiar al cambiar el MC ver en main
+import mcMoto as mcf  # ver en main
 
-lct1 = [[ctrl.ma.mci.Atributo('Ancho sepalo', 'int', 'mm'), 25],
-        [ctrl.ma.mci.Atributo('Largo sepalo', 'int', 'mm'), 110],
-        [ctrl.ma.mci.Atributo('Ancho petalo', 'int', 'mm'), 30],
-        [ctrl.ma.mci.Atributo('Largo petalo', 'int', 'mm'), 95]]
+lct1 = [[ctrl.ma.mci.Atributo('Marca', 'str', None), 'Mercedes'],
+        [ctrl.ma.mci.Atributo('Carroceria', 'str', 'None'), 'Deportivo'],
+        [ctrl.ma.mci.Atributo('Plazas', 'int', 'nº'), 2],
+        [ctrl.ma.mci.Atributo('Potencia', 'int', 'cv'), 575]]
 llct1 = ctrl.ma.mci.creaCaracteristicas(lct1)
 ob1 = ctrl.ma.mci.Objeto('ob1', llct1)
 ob1.describeObjeto()
 
 
-lct = [[ctrl.ma.mcf.Atributo('diametro', 'int', 'cm'), 180],
-       [ctrl.ma.mcf.Atributo('peso', 'int', 'gr'), 8000],
-       [ctrl.ma.mcf.Atributo('color', 'str', None), 'verde']]
+lct = [[ctrl.ma.mcf.Atributo('Marca','str', None),'YAMAHA'],
+       [ctrl.ma.mcf.Atributo('Carroceria','str','None'),'Motocross'],
+       [ctrl.ma.mcf.Atributo('Tiempos','int','nº'),2],
+       [ctrl.ma.mcf.Atributo('Potencia','int','cv'),25]]
 
 llct = ctrl.ma.mcf.creaCaracteristicas(lct)
 ob2 = ctrl.ma.mcf.Objeto('ob2', llct)
@@ -71,45 +72,14 @@ class ClasificacionDlg(QWidget):
         #posiblesFallos = Fallos(self,   observables_list, header)
         # Crea la tabla de elementos observables de dos columnas
         self.tableWidgetObjeto = QtWidgets.QTableWidget(
-            len(ob1.caracteristicas), 2)
+            4, 2)
         self.tableWidgetObjeto.setColumnWidth(
-            0, 140)  # Asignan ancho a las columnas
+            0, 150)  # Asignan ancho a las columnas
         self.tableWidgetObjeto.setColumnWidth(
-            1, 200)  # Asignan ancho a las columnas
+            1, 150)  # Asignan ancho a las columnas
         self.tableWidgetObjeto.setHorizontalHeaderLabels(
             header)  # Asigna etiquetas a las columnas
         # print observables
-        i = 0
-        for at in ob1.caracteristicas:
-            print(at)
-            print(at.atributo.nombre, at.atributo.tipo, at.valor,
-                  type(at.valor), at.atributo.unidad)  # ,
-            # Crea un item y le asigna el nombre de la observable
-            item1 = QtWidgets.QTableWidgetItem(at.atributo.nombre)
-            # item1.setCheckState(QtCore.Qt.Checked) # Establece propiedades a las celdas de la primera columna de la tabla
-            # Establece propiedades a las celdas de la primera columna
-            item1.setFlags(QtCore.Qt.ItemIsUserCheckable |
-                           QtCore.Qt.ItemIsEnabled)
-
-            if at.atributo.tipo == 'multiple':  # Si el tipo de observable es m�ltiple creamos un combox
-                combobox = QtWidgets.QComboBox()
-                # for j in observables[i].valoresPermitidos:#a�adimmos al combox los valeores permitidos
-                #   combobox.addItem(j)
-                # self.tableWidgetPosiblesFallos.setCellWidget(i, 1, combobox)#Establecemos en la celda i el combox
-            elif at.atributo.tipo == 'boleano':  # Si es boleano creamos otro combox con dos posibles valores
-                combobox = QtWidgets.QComboBox()
-                combobox.addItem('True')
-                combobox.addItem('False')
-                self.tableWidgetPosiblesFallos.setCellWidget(i, 1, combobox)
-            # Establecemos el item en la columna 0
-            self.tableWidgetObjeto.setItem(i, 0, item1)
-            if isinstance(at.valor, int):
-                item2 = QtWidgets.QTableWidgetItem(str(at.valor))
-            elif isinstance(at.valor, str):
-                item2 = QtWidgets.QTableWidgetItem(at.valor)
-            # Establecemos el item en la columna 0
-            self.tableWidgetObjeto.setItem(i, 1, item2)
-            i += 1
 
         # List
         self.listWidgetClasesCandidatas = QtWidgets.QListWidget()
@@ -129,8 +99,8 @@ class ClasificacionDlg(QWidget):
         # Dominio
         self.comboboxWidgetDominio = QtWidgets.QComboBox()
         self.comboboxWidgetDominio.addItem('')
-        self.comboboxWidgetDominio.addItem('Frutos')
-        self.comboboxWidgetDominio.addItem('Iris')
+        self.comboboxWidgetDominio.addItem('Coches')
+        self.comboboxWidgetDominio.addItem('Motos')
 
         # Botones
         self.clasificarButtom = QtWidgets.QPushButton('Clasificar')
@@ -168,7 +138,7 @@ class ClasificacionDlg(QWidget):
         mainLayout.addLayout(self.buttomsLayout)
         self.setLayout(mainLayout)
 
-        self.setGeometry(300, 300, 1125, 800)
+        self.setGeometry(300, 300, 1005, 545)
         self.setWindowTitle(u"Trabajo Final de Curso")
         self.show()
 
@@ -183,7 +153,12 @@ class ClasificacionDlg(QWidget):
 
     def changeCandidateClases(self):
         self.listWidgetClasesCandidatas.clear()
-        if self.comboboxWidgetDominio.currentText() == 'Iris':
+        emptyItem = QtWidgets.QTableWidgetItem("")
+        for i in range(4):
+            self.tableWidgetObjeto.setItem(i, 0, emptyItem)
+            self.tableWidgetObjeto.setItem(i, 1, emptyItem)
+
+        if self.comboboxWidgetDominio.currentText() == 'Coches':
             self.cc = ctrl.ma.mci.clases()
             if self.cc is not None:
                 pass
@@ -192,6 +167,39 @@ class ClasificacionDlg(QWidget):
                     stringList.append(c.nombre)
                 self.listWidgetClasesCandidatas.addItems(stringList)
                 self.listWidgetClasesCandidatas.setCurrentRow(0)
+            i = 0
+            for at in ob1.caracteristicas:
+                print(at)
+                print(at.atributo.nombre, at.atributo.tipo, at.valor,
+                      type(at.valor), at.atributo.unidad)  # ,
+                # Crea un item y le asigna el nombre de la observable
+                item1 = QtWidgets.QTableWidgetItem(at.atributo.nombre)
+                # item1.setCheckState(QtCore.Qt.Checked) # Establece propiedades a las celdas de la primera columna de la tabla
+                # Establece propiedades a las celdas de la primera columna
+                item1.setFlags(QtCore.Qt.ItemIsUserCheckable |
+                               QtCore.Qt.ItemIsEnabled)
+
+                if at.atributo.tipo == 'multiple':  # Si el tipo de observable es m�ltiple creamos un combox
+                    combobox = QtWidgets.QComboBox()
+                    # for j in observables[i].valoresPermitidos:#a�adimmos al combox los valeores permitidos
+                    #   combobox.addItem(j)
+                    # self.tableWidgetPosiblesFallos.setCellWidget(i, 1, combobox)#Establecemos en la celda i el combox
+                elif at.atributo.tipo == 'boleano':  # Si es boleano creamos otro combox con dos posibles valores
+                    combobox = QtWidgets.QComboBox()
+                    combobox.addItem('True')
+                    combobox.addItem('False')
+                    self.tableWidgetPosiblesFallos.setCellWidget(
+                        i, 1, combobox)
+                # Establecemos el item en la columna 0
+                self.tableWidgetObjeto.setItem(i, 0, item1)
+                if isinstance(at.valor, int):
+                    item2 = QtWidgets.QTableWidgetItem(str(at.valor))
+                elif isinstance(at.valor, str):
+                    item2 = QtWidgets.QTableWidgetItem(at.valor)
+                # Establecemos el item en la columna 0
+                self.tableWidgetObjeto.setItem(i, 1, item2)
+                i += 1
+                self.changeObj
         else:
             self.cc = ctrl.ma.mcf.clases()
             if self.cc is not None:
@@ -201,6 +209,39 @@ class ClasificacionDlg(QWidget):
                     stringList.append(c.nombre)
                 self.listWidgetClasesCandidatas.addItems(stringList)
                 self.listWidgetClasesCandidatas.setCurrentRow(0)
+            i = 0
+            for at in ob2.caracteristicas:
+                print(at)
+                print(at.atributo.nombre, at.atributo.tipo, at.valor,
+                      type(at.valor), at.atributo.unidad)  # ,
+                # Crea un item y le asigna el nombre de la observable
+                item1 = QtWidgets.QTableWidgetItem(at.atributo.nombre)
+                # item1.setCheckState(QtCore.Qt.Checked) # Establece propiedades a las celdas de la primera columna de la tabla
+                # Establece propiedades a las celdas de la primera columna
+                item1.setFlags(QtCore.Qt.ItemIsUserCheckable |
+                               QtCore.Qt.ItemIsEnabled)
+
+                if at.atributo.tipo == 'multiple':  # Si el tipo de observable es m�ltiple creamos un combox
+                    combobox = QtWidgets.QComboBox()
+                    # for j in observables[i].valoresPermitidos:#a�adimmos al combox los valeores permitidos
+                    #   combobox.addItem(j)
+                    # self.tableWidgetPosiblesFallos.setCellWidget(i, 1, combobox)#Establecemos en la celda i el combox
+                elif at.atributo.tipo == 'boleano':  # Si es boleano creamos otro combox con dos posibles valores
+                    combobox = QtWidgets.QComboBox()
+                    combobox.addItem('True')
+                    combobox.addItem('False')
+                    self.tableWidgetPosiblesFallos.setCellWidget(
+                        i, 1, combobox)
+                # Establecemos el item en la columna 0
+                self.tableWidgetObjeto.setItem(i, 0, item1)
+                if isinstance(at.valor, int):
+                    item2 = QtWidgets.QTableWidgetItem(str(at.valor))
+                elif isinstance(at.valor, str):
+                    item2 = QtWidgets.QTableWidgetItem(at.valor)
+                # Establecemos el item en la columna 1
+                self.tableWidgetObjeto.setItem(i, 1, item2)
+                i += 1
+                self.changeObj
 
     def generar(self):
         print('generar')
