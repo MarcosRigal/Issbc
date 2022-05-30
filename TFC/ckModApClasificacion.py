@@ -220,7 +220,7 @@ class Obtener(Inferencia):
         print 
         for cat in self.objeto.caracteristicas:#Para cada caracteristica del objeto
             if self.atributo.nombre==cat.atributo.nombre:#Si el nombre coincide
-                return cat #Devuelve la caracteristica del objeto          
+                return cat #Devuelve la caracteristica del objeto        
         return None #Si no ha encontrado nada devuelve None
         
 class Especificar(Inferencia):

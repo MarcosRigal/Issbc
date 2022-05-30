@@ -65,9 +65,9 @@ class Kawasaki_Ninja_125(Moto):
     def __init__(self):
         Moto.__init__(self,nombre='Kawasaki Ninja 125')# Se inicia con el nombre naranja
         #Reglas que debe de verificar la  Moto Setosa
-        r1=Rverifica(idRegla='r1',tipo='igual',subtipo=None,atributo=self.atAS,valorEsperado=["Kawasaki"])
-        r2=Rverifica(idRegla='r2',tipo='igual',subtipo=None,atributo=self.atLS,valorEsperado=["Deportiva"])
-        r3=Rverifica(idRegla='r3',tipo='igual',subtipo=None,atributo=self.atAP,valorEsperado=[2])
+        r1=Rverifica(idRegla='r1',tipo='igual',subtipo=None,atributo=self.atAS,valorEsperado="Kawasaki")
+        r2=Rverifica(idRegla='r2',tipo='igual',subtipo=None,atributo=self.atLS,valorEsperado="Deportiva")
+        r3=Rverifica(idRegla='r3',tipo='igual',subtipo=None,atributo=self.atAP,valorEsperado=2)
         r4=Rverifica(idRegla='r4',tipo='rango',subtipo=None,atributo=self.atLP,valorEsperado=[10,15])
         self.reglas=[r1,r2,r3,r4]
         pass
@@ -75,9 +75,9 @@ class Kawasaki_Ninja_125(Moto):
 class BMW_K_1600_GRAND_AMERICA(Moto):
     def __init__(self):
         Moto.__init__(self,nombre='BMW K 1600 GRAND AMERICA')
-        r1=Rverifica(idRegla='r1',tipo='igual',subtipo=None,atributo=self.atAS,valorEsperado=["BMW"])
-        r2=Rverifica(idRegla='r2',tipo='igual',subtipo=None,atributo=self.atLS,valorEsperado=["Americana"])
-        r3=Rverifica(idRegla='r3',tipo='igual',subtipo=None,atributo=self.atAP,valorEsperado=[4])
+        r1=Rverifica(idRegla='r1',tipo='igual',subtipo=None,atributo=self.atAS,valorEsperado="BMW")
+        r2=Rverifica(idRegla='r2',tipo='igual',subtipo=None,atributo=self.atLS,valorEsperado="Americana")
+        r3=Rverifica(idRegla='r3',tipo='igual',subtipo=None,atributo=self.atAP,valorEsperado=4)
         r4=Rverifica(idRegla='r4',tipo='rango',subtipo=None,atributo=self.atLP,valorEsperado=[100,170])
 
         self.reglas=[r1,r2,r3,r4]
@@ -86,9 +86,9 @@ class BMW_K_1600_GRAND_AMERICA(Moto):
 class YAMAHA_YZ85(Moto):
     def __init__(self):
         Moto.__init__(self,nombre='YAMAHA YZ85')
-        r1=Rverifica(idRegla='r1',tipo='igual',subtipo=None,atributo=self.atAS,valorEsperado=["YAMAHA"])
-        r2=Rverifica(idRegla='r2',tipo='igual',subtipo=None,atributo=self.atLS,valorEsperado=["Motocross"])
-        r3=Rverifica(idRegla='r3',tipo='igual',subtipo=None,atributo=self.atAP,valorEsperado=[2])
+        r1=Rverifica(idRegla='r1',tipo='igual',subtipo=None,atributo=self.atAS,valorEsperado="YAMAHA")
+        r2=Rverifica(idRegla='r2',tipo='igual',subtipo=None,atributo=self.atLS,valorEsperado="Motocross")
+        r3=Rverifica(idRegla='r3',tipo='igual',subtipo=None,atributo=self.atAP,valorEsperado=2)
         r4=Rverifica(idRegla='r4',tipo='rango',subtipo=None,atributo=self.atLP,valorEsperado=[12,28])
         self.reglas=[r1,r2,r3,r4]
 

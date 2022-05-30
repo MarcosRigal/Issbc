@@ -37,16 +37,14 @@ ob1 = ctrl.ma.mci.Objeto('ob1', llct1)
 ob1.describeObjeto()
 
 
-lct = [[ctrl.ma.mcf.Atributo('Marca','str', None),'YAMAHA'],
+lct2 = [[ctrl.ma.mcf.Atributo('Marca','str', None),'YAMAHA'],
        [ctrl.ma.mcf.Atributo('Carroceria','str','None'),'Motocross'],
        [ctrl.ma.mcf.Atributo('Tiempos','int','nº'),2],
        [ctrl.ma.mcf.Atributo('Potencia','int','cv'),25]]
 
-llct = ctrl.ma.mcf.creaCaracteristicas(lct)
-ob2 = ctrl.ma.mcf.Objeto('ob2', llct)
-
-ob = ob2
-ob.describeObjeto()
+llct2 = ctrl.ma.mcf.creaCaracteristicas(lct2)
+ob2 = ctrl.ma.mcf.Objeto('ob2', llct2)
+ob2.describeObjeto()
 
 
 class ClasificacionDlg(QWidget):
@@ -159,6 +157,7 @@ class ClasificacionDlg(QWidget):
             self.tableWidgetObjeto.setItem(i, 1, emptyItem)
 
         if self.comboboxWidgetDominio.currentText() == 'Coches':
+            self.objeto = ob1
             self.cc = ctrl.ma.mci.clases()
             if self.cc is not None:
                 pass
@@ -201,6 +200,7 @@ class ClasificacionDlg(QWidget):
                 i += 1
                 self.changeObj
         else:
+            self.objeto = ob2
             self.cc = ctrl.ma.mcf.clases()
             if self.cc is not None:
                 pass

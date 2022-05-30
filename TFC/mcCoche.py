@@ -74,9 +74,9 @@ class Mercedes_AMG_SL(Coche):
         Coche.__init__(self, nombre='Mercedes-AMG SL')
         # Reglas que debe de verificar la  Coche Setosa
         r1 = Rverifica(idRegla='r1', tipo='igual', subtipo=None,
-                       atributo=self.atAS, valorEsperado=["Mercedes"])
+                       atributo=self.atAS, valorEsperado="Mercedes")
         r2 = Rverifica(idRegla='r2', tipo='igual', subtipo=None,
-                       atributo=self.atLS, valorEsperado=["Deportivo"])
+                       atributo=self.atLS, valorEsperado="Deportivo")
         r3 = Rverifica(idRegla='r3', tipo='rango', subtipo=None,
                        atributo=self.atAP, valorEsperado=[2, 4])
         r4 = Rverifica(idRegla='r4', tipo='rango', subtipo=None,
@@ -89,9 +89,9 @@ class BMW_iX3(Coche):
     def __init__(self):
         Coche.__init__(self, nombre='BMW iX3')
         r1 = Rverifica(idRegla='r1', tipo='igual', subtipo=None,
-                       atributo=self.atAS, valorEsperado=["BMW"])
+                       atributo=self.atAS, valorEsperado="BMW")
         r2 = Rverifica(idRegla='r2', tipo='igual', subtipo=None,
-                       atributo=self.atLS, valorEsperado=["SUV"])
+                       atributo=self.atLS, valorEsperado="SUV")
         r3 = Rverifica(idRegla='r3', tipo='rango', subtipo=None,
                        atributo=self.atAP, valorEsperado=[4, 8])
         r4 = Rverifica(idRegla='r4', tipo='rango', subtipo=None,
@@ -104,9 +104,9 @@ class Audi_A5(Coche):
     def __init__(self):
         Coche.__init__(self, nombre='Audi A5')
         r1 = Rverifica(idRegla='r1', tipo='igual', subtipo=None,
-                       atributo=self.atAS, valorEsperado=["Audi"])
+                       atributo=self.atAS, valorEsperado="Audi")
         r2 = Rverifica(idRegla='r2', tipo='igual', subtipo=None,
-                       atributo=self.atLS, valorEsperado=["Berlina"])
+                       atributo=self.atLS, valorEsperado="Berlina")
         r3 = Rverifica(idRegla='r3', tipo='rango', subtipo=None,
                        atributo=self.atAP, valorEsperado=[2, 5])
         r4 = Rverifica(idRegla='r4', tipo='rango', subtipo=None,
