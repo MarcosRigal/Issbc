@@ -22,29 +22,31 @@ from PyQt5.QtWidgets import QWidget
 
 import ckCtrlClasificacion as ctrl
 
-lct1 = [[ctrl.ma.mci.Atributo('Marca', 'str', None), 'Mercedes'],
-        [ctrl.ma.mci.Atributo('Carroceria', 'str', 'None'), 'Deportivo'],
-        [ctrl.ma.mci.Atributo('Plazas', 'int', 'nº'), 2],
-        [ctrl.ma.mci.Atributo('Potencia', 'int', 'cv'), 575]]
+lct1 = [[ctrl.ma.mci.Atributo('Marca', 'str', None), ''],
+        [ctrl.ma.mci.Atributo('Carroceria', 'str', 'None'), ''],
+        [ctrl.ma.mci.Atributo('Plazas', 'int', 'nº'), 0],
+        [ctrl.ma.mci.Atributo('Potencia', 'int', 'cv'), 0]]
 llct1 = ctrl.ma.mci.creaCaracteristicas(lct1)
 ob1 = ctrl.ma.mci.Objeto('ob1', llct1)
 ob1.describeObjeto()
 
+eob1 = ctrl.ma.mci.Objeto('eob1', llct1)
+eob1.describeObjeto()
 
-lct2 = [[ctrl.ma.mcf.Atributo('Marca', 'str', None), 'YAMAHA'],
-        [ctrl.ma.mcf.Atributo('Carroceria', 'str', 'None'), 'Motocross'],
-        [ctrl.ma.mcf.Atributo('Tiempos', 'int', 'nº'), 2],
-        [ctrl.ma.mcf.Atributo('Potencia', 'int', 'cv'), 25]]
+lct2 = [[ctrl.ma.mcf.Atributo('Marca', 'str', None), ''],
+        [ctrl.ma.mcf.Atributo('Carroceria', 'str', 'None'), ''],
+        [ctrl.ma.mcf.Atributo('Tiempos', 'int', 'nº'), 0],
+        [ctrl.ma.mcf.Atributo('Potencia', 'int', 'cv'), 0]]
 
 llct2 = ctrl.ma.mcf.creaCaracteristicas(lct2)
 ob2 = ctrl.ma.mcf.Objeto('ob2', llct2)
 ob2.describeObjeto()
-
+eob2 = ctrl.ma.mcf.Objeto('eob2', llct2)
+eob2.describeObjeto()
 
 class ClasificacionDlg(QWidget):
     def __init__(self):
         super(ClasificacionDlg, self).__init__()
-        self.objeto = ob1
 
         labelTableWidgetObjeto = QtWidgets.QLabel("Objeto", self)
         labelClasesCandidatas = QtWidgets.QLabel("Clases candidatas", self)
@@ -122,21 +124,21 @@ class ClasificacionDlg(QWidget):
         self.tableWidgetObjeto.itemChanged.connect(self.changeObj)
         self.clasificarButtom.clicked.connect(self.clasificar)
         self.salirButtom.clicked.connect(self.close)
+        self.borrarButtom.clicked.connect(self.borrar)
         self.comboboxWidgetDominio.currentIndexChanged.connect(
             self.changeCandidateClases)
 
     def changeCandidateClases(self):
 
+        self.tableWidgetObjeto.clearContents()
         self.listWidgetClasesCandidatas.clear()
-        emptyItem = QtWidgets.QTableWidgetItem("")
-
-        for i in range(4):
-            self.tableWidgetObjeto.setItem(i, 0, emptyItem)
-            self.tableWidgetObjeto.setItem(i, 1, emptyItem)
+        self.listWidgetClasesSeleccionadas.clear()
+        self.plainTextEditDescripcionClases.clear()
+        self.plainTextEditExplicacion.clear()
 
         if self.comboboxWidgetDominio.currentText() == 'Coches':
 
-            self.objeto = ob1
+            self.objeto = eob1
             self.cc = ctrl.ma.mci.clases()
 
             if self.cc is not None:
@@ -152,7 +154,7 @@ class ClasificacionDlg(QWidget):
 
             i = 0
 
-            for at in ob1.caracteristicas:
+            for at in eob1.caracteristicas:
                 print(at)
                 print(at.atributo.nombre, at.atributo.tipo,
                       at.valor, type(at.valor), at.atributo.unidad)
@@ -172,14 +174,14 @@ class ClasificacionDlg(QWidget):
                         i, 1, combobox)
                 self.tableWidgetObjeto.setItem(i, 0, item1)
                 if isinstance(at.valor, int):
-                    item2 = QtWidgets.QTableWidgetItem(str(at.valor))
+                    item2 = QtWidgets.QTableWidgetItem(str(0))
                 elif isinstance(at.valor, str):
-                    item2 = QtWidgets.QTableWidgetItem(at.valor)
+                    item2 = QtWidgets.QTableWidgetItem('')
                 self.tableWidgetObjeto.setItem(i, 1, item2)
                 i += 1
                 self.changeObj
         else:
-            self.objeto = ob2
+            self.objeto = eob2
             self.cc = ctrl.ma.mcf.clases()
             if self.cc is not None:
                 pass
@@ -189,7 +191,7 @@ class ClasificacionDlg(QWidget):
                 self.listWidgetClasesCandidatas.addItems(stringList)
                 self.listWidgetClasesCandidatas.setCurrentRow(0)
             i = 0
-            for at in ob2.caracteristicas:
+            for at in eob2.caracteristicas:
                 print(at)
                 print(at.atributo.nombre, at.atributo.tipo,
                       at.valor, type(at.valor), at.atributo.unidad)
@@ -209,9 +211,9 @@ class ClasificacionDlg(QWidget):
                         i, 1, combobox)
                 self.tableWidgetObjeto.setItem(i, 0, item1)
                 if isinstance(at.valor, int):
-                    item2 = QtWidgets.QTableWidgetItem(str(at.valor))
+                    item2 = QtWidgets.QTableWidgetItem(str(0))
                 elif isinstance(at.valor, str):
-                    item2 = QtWidgets.QTableWidgetItem(at.valor)
+                    item2 = QtWidgets.QTableWidgetItem('')
                 self.tableWidgetObjeto.setItem(i, 1, item2)
                 i += 1
                 self.changeObj
@@ -253,3 +255,92 @@ class ClasificacionDlg(QWidget):
     def clasificar(self):
         print('clasificar')
         ctrl.eventClasificar(self)
+
+    def borrar(self):
+        self.tableWidgetObjeto.clearContents()
+        self.listWidgetClasesCandidatas.clear()
+        self.listWidgetClasesSeleccionadas.clear()
+        self.plainTextEditDescripcionClases.clear()
+        self.plainTextEditExplicacion.clear()
+
+        if self.comboboxWidgetDominio.currentText() == 'Coches':
+
+            self.objeto = eob1
+            self.cc = ctrl.ma.mci.clases()
+
+            if self.cc is not None:
+                pass
+
+                stringList = []
+
+                for c in self.cc:
+                    stringList.append(c.nombre)
+
+                self.listWidgetClasesCandidatas.addItems(stringList)
+                self.listWidgetClasesCandidatas.setCurrentRow(0)
+
+            i = 0
+
+            for at in eob1.caracteristicas:
+                print(at)
+                print(at.atributo.nombre, at.atributo.tipo,
+                      at.valor, type(at.valor), at.atributo.unidad)
+
+                item1 = QtWidgets.QTableWidgetItem(at.atributo.nombre)
+                item1.setFlags(QtCore.Qt.ItemIsUserCheckable |
+                               QtCore.Qt.ItemIsEnabled)
+
+                if at.atributo.tipo == 'multiple':
+                    combobox = QtWidgets.QComboBox()
+
+                elif at.atributo.tipo == 'boleano':
+                    combobox = QtWidgets.QComboBox()
+                    combobox.addItem('True')
+                    combobox.addItem('False')
+                    self.tableWidgetPosiblesFallos.setCellWidget(
+                        i, 1, combobox)
+                self.tableWidgetObjeto.setItem(i, 0, item1)
+                if isinstance(at.valor, int):
+                    item2 = QtWidgets.QTableWidgetItem(str(0))
+                elif isinstance(at.valor, str):
+                    item2 = QtWidgets.QTableWidgetItem('')
+                self.tableWidgetObjeto.setItem(i, 1, item2)
+                i += 1
+                self.changeObj
+        else:
+            self.objeto = eob2
+            self.cc = ctrl.ma.mcf.clases()
+            if self.cc is not None:
+                pass
+                stringList = []
+                for c in self.cc:
+                    stringList.append(c.nombre)
+                self.listWidgetClasesCandidatas.addItems(stringList)
+                self.listWidgetClasesCandidatas.setCurrentRow(0)
+            i = 0
+            for at in eob2.caracteristicas:
+                print(at)
+                print(at.atributo.nombre, at.atributo.tipo,
+                      at.valor, type(at.valor), at.atributo.unidad)
+
+                item1 = QtWidgets.QTableWidgetItem(at.atributo.nombre)
+                item1.setFlags(QtCore.Qt.ItemIsUserCheckable |
+                               QtCore.Qt.ItemIsEnabled)
+
+                if at.atributo.tipo == 'multiple':
+                    combobox = QtWidgets.QComboBox()
+
+                elif at.atributo.tipo == 'boleano':
+                    combobox = QtWidgets.QComboBox()
+                    combobox.addItem('True')
+                    combobox.addItem('False')
+                    self.tableWidgetPosiblesFallos.setCellWidget(
+                        i, 1, combobox)
+                self.tableWidgetObjeto.setItem(i, 0, item1)
+                if isinstance(at.valor, int):
+                    item2 = QtWidgets.QTableWidgetItem(str(0))
+                elif isinstance(at.valor, str):
+                    item2 = QtWidgets.QTableWidgetItem('')
+                self.tableWidgetObjeto.setItem(i, 1, item2)
+                i += 1
+                self.changeObj
