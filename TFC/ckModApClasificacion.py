@@ -1,10 +1,24 @@
-"""
-Created on Sun Jan 19 12:19:10 2014
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
-@author: acalvo
 """
-import mcMoto as mcf #Cambiar al cambiar el MC
-import mcCoche as mci #Cambiar al cambiar el MC
+Trabajo Final de Curso ISBC
+
+Aplicación Clasificador
+
+En este fichero se almacena el modelo de la aplicación
+
+Authors: Marcos Rivera Gavilan, Marcos Rodriguez Moreno, Moises Moyano Cejudo
+Website: https://www.uco.es/~i92rigam/
+
+Importante: Para reducir el número de comentarios,
+y simplificar la lectura, solo comentaré las funciones
+nuevas de este fichero. El resto que aparezcan sin
+comentar, habrán sido comentadas en otros ficheros.
+"""
+
+import mcMotorcycles as mcf
+import mcCars as mci
 
 class Tarea():
     def __init__(self):
@@ -21,14 +35,13 @@ class Clasificacion(Tarea):
         self.salida=None
         
     def execute(self):
-        print ('ejectutando la tarea')
+        print ('Ejectutando la tarea')
         if self.metodo=='poda':
             mt=MetodoPoda()
         pass
     
 class MetodoPoda():
-    '''Dado un objeto clasificarlo como perteneciente a una clase
-    '''
+
     def __init__(self,obj):
         self.obj=obj
         self.clasesCandidatas=[]
@@ -37,43 +50,36 @@ class MetodoPoda():
         self.explicacion=u''
         pass
     def execute(self,clasificacionDlg):
-        # Se generan las posibles clases candidatas
         g=Generar(self.obj)
         self.clasesCandidatas=g.execute(clasificacionDlg)
-        self.explicacion+=u'Se generam las clases candidatas que son:\n'
+        self.explicacion+=u'Se generan las clases candidatas que son:\n'
         for cc in self.clasesCandidatas:
             self.explicacion+=cc.nombre+'\n'
         self.explicacion+='\n'
         newSolucion=True
-        while newSolucion and len(self.clasesCandidatas)>0:#Mientras se esté buscando una nueva solución :
-                                                           #y haya clases candidatas
-            print             
-            print ('inicio while-> Lista de atributos usados:', self.lAtributosUsados)
+        while newSolucion and len(self.clasesCandidatas)>0:
+            print ('Inicio while-> Lista de atributos usados:', self.lAtributosUsados)
             print ('Clases candidatas:',self.clasesCandidatas)
             for clc in self.clasesCandidatas:
                 print (clc.nombre)
             print ('=======================')
-            print 
             
-            esp=Especificar(self.clasesCandidatas,self.lAtributosUsados)#Especifica un atributo
-            #print 'Número de clases candidatas:', len(self.clasesCandidatas)
-            newLatr=esp.execute() #Se especifica el nuevo atributo
+            esp=Especificar(self.clasesCandidatas,self.lAtributosUsados)
+            newLatr=esp.execute()
             
-            if not newLatr==(None,None): #Si sigue habiendo atributos:
-                self.lAtributosUsados=newLatr[1]#Tomamos la nueva lista de ATRIBUTOS usados
+            if not newLatr==(None,None):
+                self.lAtributosUsados=newLatr[1]
                 print ('new atributo seleccionado:', newLatr[0].nombre)
-                #print ('Atributos usados ',
                 for atu in self.lAtributosUsados:
                     print (atu.nombre)
                     
                 print
                 self.explicacion+='Seleccionamos  el atributo '+newLatr[0].nombre+' '
-                #Obtenemos el valor del atributo en el objeto
                 obt=Obtener(self.obj,newLatr[0])
                 at=obt.execute()
                 print (at)
                 print ('=======================')
-                print ('atributo y valor atributo del objeto:', at.atributo.nombre,at.valor)
+                print ('Atributo y valor atributo del objeto:', at.atributo.nombre,at.valor)
                 print ('========================')
                 
                 self.explicacion+='con el valor: '
@@ -82,14 +88,11 @@ class MetodoPoda():
                 else:
                     self.explicacion+=at.valor+'\n'
                     
-                self.conjuntoNuevosValores.append(at)#Se actualiza el conjunto de nuevos valores
+                self.conjuntoNuevosValores.append(at)
                 
-                
-                newcc=[]#La lista de de nuevas candidatas se pone a vacía
-                for cc in self.clasesCandidatas: #Para cada clase en las clases candidatas
+                newcc=[]
+                for cc in self.clasesCandidatas:
                     pass
-                    #Equiparar el conjunto de nuevos valores con el conjunto de clases candidatas y eliminar 
-                    #las clases candidatas que no satisfagan los valores del atributo
                     self.explicacion+='    Probamos la clase candidata '+cc.nombre+'\n'
                     print 
                     print ('Probamos a equiparar la clase: ', cc.nombre)
@@ -105,14 +108,14 @@ class MetodoPoda():
                     self.explicacion+='      Resultado de equiparar clase candidata '+cc.nombre+' '+str(result)+'\n'
                     print ('Resultado de equiparar la clase:', cc.nombre, result)
                     print 
-                    if  result==True:#Sólo añadimos las clases candidatas que satisfagan el valor del atributo
+                    if  result==True:
                         newcc.append(cc)
                         print ('Clase aceptada:',cc.nombre)
                     
             else:
                 print ('No quedan más atributos por especificar')
                 print 
-                newSolucion=False #No quedan más atributos por explorar
+                newSolucion=False 
                 continue
             print
             self.clasesCandidatas=newcc
@@ -132,8 +135,7 @@ class Inferencia():
         pass
 
 class Equiparar(Inferencia):
-    '''
-    '''
+
     def __init__(self,candidata,nuevosValores):
         Inferencia.__init__(self)
         self.candidata=candidata
@@ -141,17 +143,14 @@ class Equiparar(Inferencia):
         self.explicacion=u''
     
     def execute(self):
-        '''
-        Equipara una clase candidata con el conjunto de nuevos
-        valores devolviendo False si es rechazada la clase candidata.
-        '''
+
         print 
         print ('====================================')
         print ('Ejecución de la inferencia equiparar')
         print ('=====================================')
         print 
-        #Para cada valor comprobar que es compatible con la definición de la clase
-        for nv in self.nuevosValores: #Para cada nuevo atributo-valor 
+
+        for nv in self.nuevosValores: 
             print ('Equiparando el atributo/valor del objeto:',nv.atributo.nombre,'=', nv.valor)
             print ('Con la clase candidata ', self.candidata.nombre)
             
@@ -161,110 +160,76 @@ class Equiparar(Inferencia):
             else:
                 self.explicacion+=nv.valor+'\n '
                 
-            for r in self.candidata.reglas:#Para cada regla en la clase candidata:
+            for r in self.candidata.reglas:
                 print ('Nombre y tipo  de la regla:', r.idRegla,r.tipo)
-                if r.atributo.nombre==nv.atributo.nombre: #Si los atributos son comparables:
-                    if r.tipo=='igual':#Si el atributo es de tipo igual:
+                if r.atributo.nombre==nv.atributo.nombre:
+                    if r.tipo=='igual':
                         print ('Compara valor del atributo en la regla',r.valorEsperado,nv.valor)
                         if r.valorEsperado==nv.valor:
-                            continue #Es compatible con la clase
+                            continue 
                         else:
-                            return False,self.explicacion #No es compatible con la clase
-                    if r.tipo=='rango':#Si el atributo de la regla es de tipo rango
-                        print ('evaluo rango')
+                            return False,self.explicacion 
+                    if r.tipo=='rango':
+                        print ('Evaluo rango')
                         if nv.valor <r.valorEsperado[1] and nv.valor >=r.valorEsperado[0]:
-                            continue #Es compatible con la clase
+                            continue 
                         else:
-                            return False,self.explicacion  #No es compatible y retorna False
+                            return False,self.explicacion  
                 else:
                     print ('Regla no aplicable a este atributo\n')
-        return True,self.explicacion #Ha pasado el test a todos los nuevos valores del objeto
-    
-    
-        
-    
-
+        return True,self.explicacion 
 
 class Generar(Inferencia):
-    '''Dado un objeto genera un conjunto de clases candidatas
-       Esta inferencia es básica se devuelven todas las clases 
-       candidatas que ofrece la base de conocimiento.
-    '''
+
     def __init__(self,objeto):
         Inferencia.__init__(self)
         self.objeto=objeto
-    def execute(self, clasificacionDlg): #Ejecución del método de la inferencia:
+
+    def execute(self, clasificacionDlg): 
         print ('===================================')
         print ('Ejecución de la inferencia generar')
         print ('===================================')
         print 
         if clasificacionDlg.comboboxWidgetDominio.currentText() == 'Coches':
-            clases=mci.clases() #Se ha simplificado mucho y devuelve todas 
+            clases=mci.clases()  
         else:
-            clases=mcf.clases() #Se ha simplificado mucho y devuelve todas 
-                             #las clases candidatas
+            clases=mcf.clases()  
+                             
         return clases
         
 class Obtener(Inferencia):
-    '''Dado un aributo obtener un valor para ese atributo en 
-       el objeto a clasificar.
-    '''
+
     def __init__(self,objeto,atributo):
         Inferencia.__init__(self)
         self.objeto=objeto
         self.atributo=atributo
-    def execute(self): #Ejecución del método de la inferencia:
+    def execute(self): 
         print 
         print ('Ejecución de la inferencia obtener')
         print ('==================================')
         print 
-        for cat in self.objeto.caracteristicas:#Para cada caracteristica del objeto
-            if self.atributo.nombre==cat.atributo.nombre:#Si el nombre coincide
-                return cat #Devuelve la caracteristica del objeto        
-        return None #Si no ha encontrado nada devuelve None
+        for cat in self.objeto.caracteristicas:
+            if self.atributo.nombre==cat.atributo.nombre:
+                return cat         
+        return None 
         
 class Especificar(Inferencia):
-    '''Dado un conjunto de clases candidatas no vacío 
-       especifica un atributo para extraer su valor en otra inferencia.
-    '''
+
     def __init__(self,clasesCandidatas,lAtributosUsados):
-        '''
-        @param lLlasesCandidatas: Lista de clases candidatas
-        @param lAtributosUsados: Lista de atributos ya seleccionados
-        '''
         Inferencia.__init__(self)
         self.cc=clasesCandidatas
         self.lAtributosUsados=lAtributosUsados
         pass
+
     def execute(self):
-        '''Ejecución del método de la inferencia
-        @return: Devuelve en una tupla el atributo especificado y la lista de atributos ya
-                 usados.
-        '''
         print ('=================================')
         print ('Inferencia especificando atributo')
         print ('=================================')
         print 
-        if len(self.cc)>0: # El conjunto de clases candidatas no es vacío
-            clase=self.cc[0] #especificamos la primera clase en la lista
+        if len(self.cc)>0: 
+            clase=self.cc[0]
             for at in clase.atributos:
-                #print 'at:,',at,at.nombre, '->',self.lAtributosUsados
-                if not at.nombre in [atu.nombre for atu in self.lAtributosUsados]:#Si ek atributo no está en los usados 
-                    self.lAtributosUsados.append(at)#Se añade a la lista
-                    return (at, self.lAtributosUsados)#Se retorna un atributo no usado y la lista de atributos
-                                                      #que ya se han usado
-            
-            return None,None #Si todos los atributos están        
-    
-       
-       
-       
-         
-        
-        
-        
-    
-
-    
-    
-    
+                if not at.nombre in [atu.nombre for atu in self.lAtributosUsados]:
+                    self.lAtributosUsados.append(at)
+                    return (at, self.lAtributosUsados)
+            return None,None
