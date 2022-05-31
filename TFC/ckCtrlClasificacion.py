@@ -30,10 +30,10 @@ def eventClasificar(clasificacionDlg):
     pass
     print('Objeto:', clasificacionDlg.objeto)
     print('================================\n')
-    
+
     mp = ma.MetodoPoda(clasificacionDlg.objeto)
     r, exp = mp.execute(clasificacionDlg)
-    
+
     clasificacionDlg.plainTextEditExplicacion.clear()
     clasificacionDlg.plainTextEditExplicacion.appendPlainText(exp)
 
@@ -42,7 +42,7 @@ def eventClasificar(clasificacionDlg):
     for cc in r:
         print('         ->', cc.nombre)
         cs.append(cc.nombre)
-    
+
     clasificacionDlg.listWidgetClasesSeleccionadas.clear()
     clasificacionDlg.listWidgetClasesSeleccionadas.addItems(
         cs)

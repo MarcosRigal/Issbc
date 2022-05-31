@@ -48,9 +48,12 @@ class ClasificacionDlg(QWidget):
 
         labelTableWidgetObjeto = QtWidgets.QLabel("Objeto", self)
         labelClasesCandidatas = QtWidgets.QLabel("Clases candidatas", self)
-        labelTextDescripcionClases = QtWidgets.QLabel(u"Descripción de las clases", self)
-        labelListClasesSeleccionadas = QtWidgets.QLabel("Clases seleccionadas", self)
-        labelTextjustificacionL = QtWidgets.QLabel(u"Justificación de la clasificación", self)
+        labelTextDescripcionClases = QtWidgets.QLabel(
+            u"Descripción de las clases", self)
+        labelListClasesSeleccionadas = QtWidgets.QLabel(
+            "Clases seleccionadas", self)
+        labelTextjustificacionL = QtWidgets.QLabel(
+            u"Justificación de la clasificación", self)
         labelTextjustificacionR = QtWidgets.QLabel(u"", self)
 
         labelComboxMetodo = QtWidgets.QLabel(u"Método", self)

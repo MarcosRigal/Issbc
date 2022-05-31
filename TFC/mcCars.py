@@ -17,11 +17,12 @@ nuevas de este fichero. El resto que aparezcan sin
 comentar, habrán sido comentadas en otros ficheros.
 """
 
+
 class Clase():
 
     def __init__(self, nombre):
         self.nombre = nombre
-        self.reglas = []  
+        self.reglas = []
 
     def descripcion(self):
         descripcion = u''
@@ -38,6 +39,7 @@ class Clase():
                 descripcion += '\n'
         return descripcion
 
+
 class Coche(Clase):
 
     def __init__(self, nombre):
@@ -49,6 +51,7 @@ class Coche(Clase):
         self.atLP = Atributo('Potencia', 'int', 'cv')
 
         self.atributos = [self.atAS, self.atLS, self.atAP, self.atLP]
+
 
 class Mercedes_AMG_SL(Coche):
 
@@ -93,6 +96,7 @@ class Audi_A5(Coche):
         r4 = Rverifica(idRegla='r4', tipo='rango', subtipo=None,
                        atributo=self.atLP, valorEsperado=[150, 575])
         self.reglas = [r1, r2, r3, r4]
+
 
 class Regla():
 
@@ -144,6 +148,7 @@ class Rverifica(Regla):
 
         return descripcion
 
+
 class Objeto():
     def __init__(self, identificador, caracteristicas):
         print('Se va a crear')
@@ -159,6 +164,7 @@ class Objeto():
             print(ct.atributo.nombre, ct.atributo.tipo,
                   ct.valor, ct.atributo.unidad)
 
+
 class Atributo():
 
     def __init__(self, nombre, tipo, unidad):
@@ -172,6 +178,7 @@ class Caracteristica():
     def __init__(self, atributo, valor):
         self.atributo = atributo
         self.valor = valor
+
 
 def clases():
 

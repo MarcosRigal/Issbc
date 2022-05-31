@@ -21,9 +21,6 @@ import sys
 from PyQt5 import QtWidgets
 import ckVtsClasificacion as vts
 
-app =  QtWidgets.QApplication(sys.argv)
+app = QtWidgets.QApplication(sys.argv)
 form = vts.ClasificacionDlg()
 sys.exit(app.exec_())
-
-
-
